@@ -155,3 +155,46 @@ FROM grados g
 JOIN sedes s ON g.sede_id = s.id
 JOIN colegios c ON s.colegio_id = c.id
 ORDER BY c.nombre, s.nombre, g.grado::int;
+
+
+
+--------------------------------
+-- 1. Primero creamos la institución de prueba KANDO
+INSERT INTO colegios (codigo_institucion, nombre) 
+VALUES ('KANDO', 'INSTITUCIÓN DE PRUEBA KANDO');
+
+-- 2. Luego creamos la sede principal (SA)
+INSERT INTO sedes (
+    colegio_id, 
+    codigo_sede, 
+    nombre, 
+    codigo_completo
+) 
+VALUES (
+    (SELECT id FROM colegios WHERE codigo_institucion = 'KANDO'),
+    'SA',
+    'SEDE A - PRUEBAS KANDO',
+    'KANDOSA'
+);
+
+-- 3. Finalmente creamos tu usuario como administrador
+INSERT INTO usuarios (
+    cedula,
+    nombres,
+    apellidos,
+    email,
+    telefono,
+    password_hash,
+    codigo_institucion,
+    debe_cambiar_password
+) 
+VALUES (
+    '1097910139',  -- Reemplaza esto con tu número de cédula real
+    'Carlos Alberto',
+    'García Córdoba',
+    'carlosgarciacordoba2022@gmail.com',  -- Puedes cambiar este email
+    '3212833963',  -- Reemplaza con tu número de teléfono real
+    crypt('Kando@2023', gen_salt('bf')),  -- Contraseña inicial: Kando@2023
+    'KANDOSA',
+    false
+);

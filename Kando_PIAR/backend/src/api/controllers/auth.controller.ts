@@ -1,25 +1,29 @@
 import { Request, Response } from 'express';
-import { Pool } from 'pg';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { validationResult } from 'express-validator';
 import pool from '../../config/database';
 
 export const login = async (req: Request, res: Response) => {
     try {
-        const { email, password } = req.body;
+        const { userCode, password, institution } = req.body;
 
-        // Validar que se proporcionaron email y password
-        if (!email || !password) {
+        // Validar que se proporcionaron todos los campos requeridos
+        if (!userCode || !password || !institution) {
             return res.status(400).json({
                 success: false,
-                message: 'Email y contraseña son requeridos'
+                message: 'Código de usuario, contraseña y código de institución son requeridos'
             });
         }
 
-        // Buscar usuario por email
+        // Buscar usuario por código de usuario y código de institución
         const userResult = await pool.query(
-            'SELECT cedula, codigo_usuario, nombres, apellidos, password_hash, estado, debe_cambiar_password, intentos_fallidos, bloqueado_hasta FROM usuarios WHERE email = $1',
-            [email]
+            `SELECT cedula, codigo_usuario, nombres, apellidos, email, telefono, 
+                    password_hash, codigo_institucion, debe_cambiar_password, 
+                    estado, intentos_fallidos, bloqueado_hasta 
+             FROM usuarios 
+             WHERE codigo_usuario = $1 AND codigo_institucion = $2 AND estado = true`,
+            [userCode, institution]
         );
 
         const user = userResult.rows[0];
@@ -28,16 +32,15 @@ export const login = async (req: Request, res: Response) => {
         if (!user) {
             return res.status(401).json({
                 success: false,
-                message: 'Credenciales inválidas'
+                message: 'Código de usuario, contraseña o código de institución incorrectos'
             });
         }
 
         // Verificar si el usuario está bloqueado
-        if (user.bloqueado_hasta && new Date(user.bloqueado_hasta) > new Date()) {
-            return res.status(403).json({
+        if (user.bloqueado_hasta && new Date() < new Date(user.bloqueado_hasta)) {
+            return res.status(423).json({
                 success: false,
-                message: 'Usuario bloqueado temporalmente',
-                bloqueadoHasta: user.bloqueado_hasta
+                message: 'Usuario bloqueado temporalmente. Intente más tarde'
             });
         }
 
@@ -46,26 +49,23 @@ export const login = async (req: Request, res: Response) => {
 
         if (!validPassword) {
             // Incrementar intentos fallidos
-            const nuevoIntentos = user.intentos_fallidos + 1;
-            let bloqueadoHasta = null;
-
-            if (nuevoIntentos >= 3) {
-                bloqueadoHasta = new Date(Date.now() + 15 * 60000); // 15 minutos
-            }
+            const intentos = user.intentos_fallidos + 1;
+            const bloqueado_hasta = intentos >= 3 ? 
+                new Date(Date.now() + 15 * 60 * 1000) : // 15 minutos de bloqueo
+                null;
 
             await pool.query(
                 'UPDATE usuarios SET intentos_fallidos = $1, bloqueado_hasta = $2 WHERE cedula = $3',
-                [nuevoIntentos, bloqueadoHasta, user.cedula]
+                [intentos, bloqueado_hasta, user.cedula]
             );
 
             return res.status(401).json({
                 success: false,
-                message: 'Credenciales inválidas',
-                intentosRestantes: Math.max(0, 3 - nuevoIntentos)
+                message: 'Código de usuario, contraseña o código de institución incorrectos'
             });
         }
 
-        // Resetear intentos fallidos si el login es exitoso
+        // Login exitoso - resetear intentos fallidos y actualizar último acceso
         await pool.query(
             'UPDATE usuarios SET intentos_fallidos = 0, bloqueado_hasta = NULL, ultimo_acceso = CURRENT_TIMESTAMP WHERE cedula = $1',
             [user.cedula]
@@ -77,22 +77,26 @@ export const login = async (req: Request, res: Response) => {
                 cedula: user.cedula,
                 codigo_usuario: user.codigo_usuario,
                 nombres: user.nombres,
-                apellidos: user.apellidos
+                apellidos: user.apellidos,
+                codigo_institucion: user.codigo_institucion
             },
-            process.env.JWT_SECRET || 'tu_clave_secreta',
+            process.env.JWT_SECRET || 'tu_clave_secreta_kando',
             { expiresIn: '8h' }
         );
 
         // Enviar respuesta exitosa
         res.json({
             success: true,
-            message: 'Login exitoso',
+            message: 'Inicio de sesión exitoso',
             token,
             user: {
                 cedula: user.cedula,
                 codigo_usuario: user.codigo_usuario,
                 nombres: user.nombres,
                 apellidos: user.apellidos,
+                email: user.email,
+                telefono: user.telefono,
+                codigo_institucion: user.codigo_institucion,
                 debe_cambiar_password: user.debe_cambiar_password
             }
         });

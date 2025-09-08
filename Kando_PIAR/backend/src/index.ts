@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './config/database';
+import authRoutes from './api/routes/auth.routes';
 
 dotenv.config();
 
@@ -10,6 +11,9 @@ const app = express();
 // Middlewares
 app.use(cors());
 app.use(express.json());
+
+// Rutas
+app.use('/api/auth', authRoutes);
 
 // Ruta de prueba
 app.get('/', (_req: Request, res: Response) => {

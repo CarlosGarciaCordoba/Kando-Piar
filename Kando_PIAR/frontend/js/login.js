@@ -199,7 +199,7 @@ const LoginModule = (function() {
             
             // Redirigir después de 2 segundos
             setTimeout(() => {
-                window.location.href = '/dashboard.html';
+                window.location.href = './dashboard.html';
             }, 2000);
             
         } catch (error) {

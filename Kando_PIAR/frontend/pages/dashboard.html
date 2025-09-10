@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Kando</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="hamburger-menu">
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="institution-info">
+                <i class="fas fa-building"></i>
+                <span>Instituto Tecnológico Superior de Monterrey</span>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-question"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Overlay para móviles (solo visible cuando el menú está abierto) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar/Menú Lateral Estático -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Kando</h2>
+        </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name">María González</div>
+                <p><i class="fas fa-code"></i> USR-7892</p>
+                <p><i class="fas fa-envelope"></i> maria.gonzalez@example.com</p>
+            </div>
+            <button class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="#" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span class="menu-text">Inicio</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-bar"></i>
+                <span class="menu-text">Estadísticas</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span class="menu-text">Formulario Piar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="menu-text">Gestor de Archivos</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-file-alt"></i>
+                <span class="menu-text">Reportes</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span class="menu-text">Parametrizaciones</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="content" id="content">
+        <div class="welcome-card">
+            <h1>Bienvenida, María</h1>
+            <p>Te damos la bienvenida al portal académico de Kando. Aquí podrás gestionar tus cursos, estudiantes y actividades académicas. Revisa las estadísticas recientes y las notificaciones importantes.</p>
+        </div>
+        <div class="welcome-card">
+            <h2>Actividades Recientes</h2>
+            <p>No hay actividades recientes para mostrar. Cuando tengas nuevas actividades, aparecerán aquí para que puedas revisarlas rápidamente.</p>
+        </div>
+    </main>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

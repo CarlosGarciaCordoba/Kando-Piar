@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario PIAR - Kando</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/formulario-piar.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="hamburger-menu">
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="institution-info">
+                <i class="fas fa-building"></i>
+                <span>Secretaria de Educación</span>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-question"></i>
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Overlay para móviles -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar/Menú Lateral -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Kando</h2>
+        </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name" id="userName">Cargando...</div>
+                <p><i class="fas fa-code"></i> <span id="userCode">Cargando...</span></p>
+                <p><i class="fas fa-envelope"></i> <span id="userEmail">Cargando...</span></p>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="./dashboard.html" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span class="menu-text">Inicio</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-bar"></i>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-users"></i>
+                <span class="menu-text">Estudiantes</span>
+            </a>
+            <a href="./formulario-piar.html" class="menu-item active">
+                <i class="fas fa-book"></i>
+                <span class="menu-text">Formulario Piar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="menu-text">Calendario</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-file-alt"></i>
+                <span class="menu-text">Reportes</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span class="menu-text">Configuración</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="content" id="content">
+        <!-- Título Principal -->
+        <div class="form-header">
+            <h1>Formulario PIAR (Plan Individual de Ajustes Razonables)</h1>
+            <p>Complete la información requerida para el Plan Individual de Ajustes Razonables del estudiante.</p>
+        </div>
+
+        <!-- Botón para habilitar formulario -->
+        <div class="enable-form-section">
+            <button class="enable-form-btn" id="enableFormBtn">
+                <i class="fas fa-edit"></i>
+                Haz Click aquí para diligenciar el Formulario PIAR
+            </button>
+        </div>
+
+        <!-- Secciones del formulario (inicialmente ocultas) -->
+        <div class="form-sections" id="formSections" style="display: none;">
+            
+            <!-- Anexo 1 -->
+            <div class="form-section">
+                <div class="section-header" data-section="anexo1">
+                    <h2>
+                        <i class="fas fa-file-alt"></i>
+                        Anexo 1
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </h2>
+                </div>
+                
+                <div class="section-content" id="anexo1Content">
+                    <!-- Fecha y lugar de expedición -->
+                    <div class="expedition-info">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Fecha y lugar de expedición:</label>
+                                <div class="expedition-data">
+                                    <span id="expeditionDate"></span> - Floridablanca, Santander
+                                </div>
+                                <div class="expedition-user">
+                                    Diligenciado por: <span id="expeditionUser">Cargando...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Caracterización Inicial -->
+                    <div class="section-divider">
+                        <h2>Caracterización Inicial</h2>
+                    </div>
+
+                    <!-- Información General del Estudiante -->
+                    <div class="subsection">
+                        <h3>Información General del Estudiante</h3>
+                        
+                        <form id="studentForm" class="student-form">
+                            <!-- Fila 1: Nombres y Apellidos -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nombres">Nombres: <span class="required">*</span></label>
+                                    <input type="text" id="nombres" name="nombres" required>
+                                    <div class="error-message" id="nombresError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellidos">Apellidos: <span class="required">*</span></label>
+                                    <input type="text" id="apellidos" name="apellidos" required>
+                                    <div class="error-message" id="apellidosError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 2: Fecha de Nacimiento y Edad -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fechaNacimiento">Fecha de Nacimiento: <span class="required">*</span></label>
+                                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                                    <div class="error-message" id="fechaNacimientoError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edad">Edad:</label>
+                                    <input type="text" id="edad" name="edad" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Fila 3: Tipo de Documento y Número -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="tipoDocumento">Tipo de Documento: <span class="required">*</span></label>
+                                    <select id="tipoDocumento" name="tipoDocumento" required>
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                    <div class="error-message" id="tipoDocumentoError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="numeroDocumento">Nro. Documento: <span class="required">*</span></label>
+                                    <input type="text" id="numeroDocumento" name="numeroDocumento" maxlength="12" pattern="[0-9]*" required>
+                                    <div class="error-message" id="numeroDocumentoError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 4: Departamento y Municipio -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="departamento">Departamento: <span class="required">*</span></label>
+                                    <select id="departamento" name="departamento" required>
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                    <div class="error-message" id="departamentoError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="municipio">Municipio: <span class="required">*</span></label>
+                                    <select id="municipio" name="municipio" required>
+                                        <option value="">Seleccione departamento primero...</option>
+                                    </select>
+                                    <div class="error-message" id="municipioError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 5: Barrio y Dirección -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="barrio">Barrio: <span class="required">*</span></label>
+                                    <select id="barrio" name="barrio" required>
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                    <div class="error-message" id="barrioError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="direccion">Dirección: <span class="required">*</span></label>
+                                    <input type="text" id="direccion" name="direccion" required>
+                                    <div class="error-message" id="direccionError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 6: Género y Teléfono -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="genero">Género: <span class="required">*</span></label>
+                                    <select id="genero" name="genero" required>
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                    <div class="error-message" id="generoError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono:</label>
+                                    <input type="tel" id="telefono" name="telefono" maxlength="12" pattern="[0-9]*">
+                                    <div class="error-message" id="telefonoError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 7: Correo electrónico -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico:</label>
+                                    <input type="email" id="email" name="email">
+                                    <div class="error-message" id="emailError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 8: Afiliación al sistema de salud -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>¿Afiliado al sistema de salud? <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="afiliadoSalud" value="si" required>
+                                            <span class="radio-custom"></span>
+                                            Sí
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="afiliadoSalud" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="afiliadoSaludError"></div>
+                                </div>
+                                <div class="form-group" id="epsGroup" style="display: none;">
+                                    <label for="eps">EPS: <span class="required">*</span></label>
+                                    <select id="eps" name="eps">
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                    <div class="error-message" id="epsError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 9: Asistencia a institución de rehabilitación -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>¿Asiste a alguna institución de rehabilitación? <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="asisteRehabilitacion" value="si" required>
+                                            <span class="radio-custom"></span>
+                                            Sí
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="asisteRehabilitacion" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="asisteRehabilitacionError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 10: Detalles de rehabilitación (oculta inicialmente) -->
+                            <div class="form-row" id="rehabilitacionDetails" style="display: none;">
+                                <div class="form-group">
+                                    <label for="institucionRehabilitacion">Nombre de la institución: <span class="required">*</span></label>
+                                    <select id="institucionRehabilitacion" name="institucionRehabilitacion">
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                    <div class="error-message" id="institucionRehabilitacionError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="frecuenciaRehabilitacion">Frecuencia: <span class="required">*</span></label>
+                                    <select id="frecuenciaRehabilitacion" name="frecuenciaRehabilitacion">
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                    <div class="error-message" id="frecuenciaRehabilitacionError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Botones de acción -->
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="clearForm()">
+                                    <i class="fas fa-eraser"></i>
+                                    Limpiar Formulario
+                                </button>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Guardar Información
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/formulario-piar.js"></script>
+</body>
+</html>

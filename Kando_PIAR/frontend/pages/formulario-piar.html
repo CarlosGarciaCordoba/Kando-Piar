@@ -314,6 +314,1308 @@
                                 </div>
                             </div>
 
+                            <!-- Fila 11: Diagnóstico médico -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>¿Tiene diagnóstico médico? <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="tieneDiagnostico" value="si" required>
+                                            <span class="radio-custom"></span>
+                                            Sí
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="tieneDiagnostico" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="tieneDiagnosticoError"></div>
+                                </div>
+                                <div class="form-group" id="diagnosticoGroup" style="display: none;">
+                                    <label for="diagnostico">¿Cuál? <span class="required">*</span></label>
+                                    <select id="diagnostico" name="diagnostico">
+                                        <option value="">Seleccione...</option>
+                                        <!-- Opciones de parametrización -->
+                                    </select>
+                                    <div class="error-message" id="diagnosticoError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 12: Consumo de medicamentos -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>¿Consume medicamentos? <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="consumeMedicamentos" value="si" required>
+                                            <span class="radio-custom"></span>
+                                            Sí
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="consumeMedicamentos" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="consumeMedicamentosError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 13: Detalles de medicamentos (oculta inicialmente) -->
+                            <div class="form-row" id="medicamentosDetails" style="display: none;">
+                                <div class="form-group">
+                                    <label for="frecuenciaMedicamentos">Frecuencia: <span class="required">*</span></label>
+                                    <select id="frecuenciaMedicamentos" name="frecuenciaMedicamentos">
+                                        <option value="">Seleccione...</option>
+                                        <!-- Opciones de parametrización -->
+                                    </select>
+                                    <div class="error-message" id="frecuenciaMedicamentosError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="horarioMedicamentos">Horario: <span class="required">*</span></label>
+                                    <select id="horarioMedicamentos" name="horarioMedicamentos">
+                                        <option value="">Seleccione...</option>
+                                        <!-- Opciones de parametrización -->
+                                    </select>
+                                    <div class="error-message" id="horarioMedicamentosError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 14: Grupo étnico -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>¿Pertenece a algún grupo étnico? <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="perteneceGrupoEtnico" value="si" required>
+                                            <span class="radio-custom"></span>
+                                            Sí
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="perteneceGrupoEtnico" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="perteneceGrupoEtnicoError"></div>
+                                </div>
+                                <div class="form-group" id="grupoEtnicoGroup" style="display: none;">
+                                    <label for="grupoEtnico">¿Cuál? <span class="required">*</span></label>
+                                    <select id="grupoEtnico" name="grupoEtnico">
+                                        <option value="">Seleccione...</option>
+                                        <!-- Opciones de parametrización -->
+                                    </select>
+                                    <div class="error-message" id="grupoEtnicoError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 15: Ingreso previo al sistema educativo -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>¿Había ingresado antes al sistema educativo formal? <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="ingresoSistemaEducativo" value="si" required>
+                                            <span class="radio-custom"></span>
+                                            Sí
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="ingresoSistemaEducativo" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="ingresoSistemaEducativoError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 16: Último grado escolar cursado (oculta inicialmente) -->
+                            <div class="form-row" id="historialEducativoDetails" style="display: none;">
+                                <div class="form-group">
+                                    <label for="ultimoGradoCursado">Último grado escolar cursado: <span class="required">*</span></label>
+                                    <select id="ultimoGradoCursado" name="ultimoGradoCursado">
+                                        <option value="">Seleccione...</option>
+                                        <option value="0">0°</option>
+                                        <option value="1">1°</option>
+                                        <option value="2">2°</option>
+                                        <option value="3">3°</option>
+                                        <option value="4">4°</option>
+                                        <option value="5">5°</option>
+                                        <option value="6">6°</option>
+                                        <option value="7">7°</option>
+                                        <option value="8">8°</option>
+                                        <option value="9">9°</option>
+                                        <option value="10">10°</option>
+                                        <option value="11">11°</option>
+                                    </select>
+                                    <div class="error-message" id="ultimoGradoCursadoError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="establecimientoEducativo">Establecimiento educativo donde lo cursó: <span class="required">*</span></label>
+                                    <select id="establecimientoEducativo" name="establecimientoEducativo">
+                                        <option value="">Seleccione...</option>
+                                        <!-- Opciones de parametrización -->
+                                    </select>
+                                    <div class="error-message" id="establecimientoEducativoError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 17: Motivo de retiro y grado aspirante (oculta inicialmente) -->
+                            <div class="form-row" id="historialEducativoDetails2" style="display: none;">
+                                <div class="form-group">
+                                    <label for="motivoRetiro">Motivo por el cual se retiró del establecimiento educativo:</label>
+                                    <input type="text" id="motivoRetiro" name="motivoRetiro" maxlength="255">
+                                    <div class="error-message" id="motivoRetiroError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gradoAspirante">Grado escolar al que aspira ingresar: <span class="required">*</span></label>
+                                    <select id="gradoAspirante" name="gradoAspirante">
+                                        <option value="">Seleccione...</option>
+                                        <option value="0">0°</option>
+                                        <option value="1">1°</option>
+                                        <option value="2">2°</option>
+                                        <option value="3">3°</option>
+                                        <option value="4">4°</option>
+                                        <option value="5">5°</option>
+                                        <option value="6">6°</option>
+                                        <option value="7">7°</option>
+                                        <option value="8">8°</option>
+                                        <option value="9">9°</option>
+                                        <option value="10">10°</option>
+                                        <option value="11">11°</option>
+                                    </select>
+                                    <div class="error-message" id="gradoAspiranteError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Datos Generales de los padres/cuidadores -->
+                            <div class="section-divider">
+                                <h2>Datos Generales de sus padres/cuidadores</h2>
+                            </div>
+
+                            <!-- Información de la Madre -->
+                            <div class="subsection">
+                                <h3>Información de la Madre</h3>
+                                
+                                <!-- Fila 18: Nombres y Apellidos de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nombresMadre">Nombres:</label>
+                                        <input type="text" id="nombresMadre" name="nombresMadre" maxlength="100">
+                                        <div class="error-message" id="nombresMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellidosMadre">Apellidos:</label>
+                                        <input type="text" id="apellidosMadre" name="apellidosMadre" maxlength="100">
+                                        <div class="error-message" id="apellidosMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 19: Edad y Tipo de documento de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edadMadre">Edad:</label>
+                                        <select id="edadMadre" name="edadMadre">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <script>
+                                            // Generar opciones de edad de 0 a 120
+                                            (function() {
+                                                const selectEdadMadre = document.getElementById('edadMadre');
+                                                for (let i = 0; i <= 120; i++) {
+                                                    const option = document.createElement('option');
+                                                    option.value = i;
+                                                    option.textContent = i + ' años';
+                                                    selectEdadMadre.appendChild(option);
+                                                }
+                                            })();
+                                        </script>
+                                        <div class="error-message" id="edadMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tipoDocumentoMadre">Tipo de documento:</label>
+                                        <select id="tipoDocumentoMadre" name="tipoDocumentoMadre">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <div class="error-message" id="tipoDocumentoMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 20: Nro Documento y Género de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="numeroDocumentoMadre">Nro. Documento:</label>
+                                        <input type="text" id="numeroDocumentoMadre" name="numeroDocumentoMadre" maxlength="12" pattern="[0-9]*">
+                                        <div class="error-message" id="numeroDocumentoMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="generoMadre">Género:</label>
+                                        <select id="generoMadre" name="generoMadre">
+                                            <option value="">Seleccione...</option>
+                                            <option value="femenino" selected>Femenino</option>
+                                            <option value="masculino">Masculino</option>
+                                        </select>
+                                        <div class="error-message" id="generoMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 21: Grupo étnico de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>¿Pertenece a algún grupo étnico?</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="perteneceGrupoEtnicoMadre" value="si">
+                                                <span class="radio-custom"></span>
+                                                Sí
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="perteneceGrupoEtnicoMadre" value="no">
+                                                <span class="radio-custom"></span>
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="perteneceGrupoEtnicoMadreError"></div>
+                                    </div>
+                                    <div class="form-group" id="grupoEtnicoMadreGroup" style="display: none;">
+                                        <label for="grupoEtnicoMadre">¿Cuál?</label>
+                                        <select id="grupoEtnicoMadre" name="grupoEtnicoMadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="grupoEtnicoMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 22: Nivel educativo y Ocupación de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nivelEducativoMadre">Máximo nivel educativo alcanzado:</label>
+                                        <select id="nivelEducativoMadre" name="nivelEducativoMadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="nivelEducativoMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ocupacionMadre">Ocupación Actual:</label>
+                                        <select id="ocupacionMadre" name="ocupacionMadre">
+                                            <option value="">Seleccione...</option>
+                                            <option value="empleado">Empleado</option>
+                                            <option value="independiente">Trabajador Independiente</option>
+                                            <option value="desempleado">Desempleado</option>
+                                            <option value="estudiante">Estudiante</option>
+                                            <option value="pensionado">Pensionado</option>
+                                            <option value="hogar">Labores del hogar</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="ocupacionMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 23: Ingresos y Dirección de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ingresosMadre">Ingresos Promedios Mensuales:</label>
+                                        <select id="ingresosMadre" name="ingresosMadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="ingresosMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="direccionMadre">Dirección de vivienda actual:</label>
+                                        <input type="text" id="direccionMadre" name="direccionMadre" maxlength="200">
+                                        <div class="error-message" id="direccionMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 24: Teléfono y Email de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="telefonoMadre">Número de teléfono:</label>
+                                        <input type="tel" id="telefonoMadre" name="telefonoMadre" maxlength="12" pattern="[0-9]*">
+                                        <div class="error-message" id="telefonoMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="emailMadre">Correo Electrónico (Si aplica):</label>
+                                        <input type="email" id="emailMadre" name="emailMadre" maxlength="100">
+                                        <div class="error-message" id="emailMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 25: Departamento y Municipio de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="departamentoMadre">Departamento:</label>
+                                        <select id="departamentoMadre" name="departamentoMadre">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <div class="error-message" id="departamentoMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="municipioMadre">Municipio:</label>
+                                        <select id="municipioMadre" name="municipioMadre">
+                                            <option value="">Seleccione departamento primero...</option>
+                                        </select>
+                                        <div class="error-message" id="municipioMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 26: Ciudad y Lugar de trabajo de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ciudadMadre">Ciudad:</label>
+                                        <select id="ciudadMadre" name="ciudadMadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="ciudadMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lugarTrabajoMadre">Lugar de trabajo:</label>
+                                        <input type="text" id="lugarTrabajoMadre" name="lugarTrabajoMadre" maxlength="150">
+                                        <div class="error-message" id="lugarTrabajoMadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 27: Dirección y Teléfono empresa de la madre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="direccionTrabajoMadre">Dirección:</label>
+                                        <input type="text" id="direccionTrabajoMadre" name="direccionTrabajoMadre" maxlength="200">
+                                        <div class="error-message" id="direccionTrabajoMadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telefonoEmpresaMadre">Teléfono de la empresa:</label>
+                                        <input type="tel" id="telefonoEmpresaMadre" name="telefonoEmpresaMadre" maxlength="12" pattern="[0-9]*">
+                                        <div class="error-message" id="telefonoEmpresaMadreError"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Información del Padre -->
+                            <div class="subsection">
+                                <h3>Información del Padre</h3>
+                                
+                                <!-- Fila 28: Nombres y Apellidos del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nombresPadre">Nombres:</label>
+                                        <input type="text" id="nombresPadre" name="nombresPadre" maxlength="100">
+                                        <div class="error-message" id="nombresPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellidosPadre">Apellidos:</label>
+                                        <input type="text" id="apellidosPadre" name="apellidosPadre" maxlength="100">
+                                        <div class="error-message" id="apellidosPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 29: Edad y Tipo de documento del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edadPadre">Edad:</label>
+                                        <select id="edadPadre" name="edadPadre">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <script>
+                                            // Generar opciones de edad de 0 a 120
+                                            (function() {
+                                                const selectEdadPadre = document.getElementById('edadPadre');
+                                                for (let i = 0; i <= 120; i++) {
+                                                    const option = document.createElement('option');
+                                                    option.value = i;
+                                                    option.textContent = i + ' años';
+                                                    selectEdadPadre.appendChild(option);
+                                                }
+                                            })();
+                                        </script>
+                                        <div class="error-message" id="edadPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tipoDocumentoPadre">Tipo de documento:</label>
+                                        <select id="tipoDocumentoPadre" name="tipoDocumentoPadre">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <div class="error-message" id="tipoDocumentoPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 30: Nro Documento y Género del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="numeroDocumentoPadre">Nro. Documento:</label>
+                                        <input type="text" id="numeroDocumentoPadre" name="numeroDocumentoPadre" maxlength="12" pattern="[0-9]*">
+                                        <div class="error-message" id="numeroDocumentoPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="generoPadre">Género:</label>
+                                        <select id="generoPadre" name="generoPadre">
+                                            <option value="">Seleccione...</option>
+                                            <option value="masculino" selected>Masculino</option>
+                                            <option value="femenino">Femenino</option>
+                                        </select>
+                                        <div class="error-message" id="generoPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 31: Grupo étnico del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>¿Pertenece a algún grupo étnico?</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="perteneceGrupoEtnicoPadre" value="si">
+                                                <span class="radio-custom"></span>
+                                                Sí
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="perteneceGrupoEtnicoPadre" value="no">
+                                                <span class="radio-custom"></span>
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="perteneceGrupoEtnicoPadreError"></div>
+                                    </div>
+                                    <div class="form-group" id="grupoEtnicoPadreGroup" style="display: none;">
+                                        <label for="grupoEtnicoPadre">¿Cuál?</label>
+                                        <select id="grupoEtnicoPadre" name="grupoEtnicoPadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="grupoEtnicoPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 32: Nivel educativo y Ocupación del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nivelEducativoPadre">Máximo nivel educativo alcanzado:</label>
+                                        <select id="nivelEducativoPadre" name="nivelEducativoPadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="nivelEducativoPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ocupacionPadre">Ocupación Actual:</label>
+                                        <select id="ocupacionPadre" name="ocupacionPadre">
+                                            <option value="">Seleccione...</option>
+                                            <option value="empleado">Empleado</option>
+                                            <option value="independiente">Trabajador Independiente</option>
+                                            <option value="desempleado">Desempleado</option>
+                                            <option value="estudiante">Estudiante</option>
+                                            <option value="pensionado">Pensionado</option>
+                                            <option value="hogar">Labores del hogar</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="ocupacionPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 33: Ingresos y Dirección del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ingresosPadre">Ingresos Promedios Mensuales:</label>
+                                        <select id="ingresosPadre" name="ingresosPadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="ingresosPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="direccionPadre">Dirección de vivienda actual:</label>
+                                        <input type="text" id="direccionPadre" name="direccionPadre" maxlength="200">
+                                        <div class="error-message" id="direccionPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 34: Teléfono y Email del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="telefonoPadre">Número de teléfono:</label>
+                                        <input type="tel" id="telefonoPadre" name="telefonoPadre" maxlength="12" pattern="[0-9]*">
+                                        <div class="error-message" id="telefonoPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="emailPadre">Correo Electrónico (Si aplica):</label>
+                                        <input type="email" id="emailPadre" name="emailPadre" maxlength="100">
+                                        <div class="error-message" id="emailPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 35: Departamento y Municipio del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="departamentoPadre">Departamento:</label>
+                                        <select id="departamentoPadre" name="departamentoPadre">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <div class="error-message" id="departamentoPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="municipioPadre">Municipio:</label>
+                                        <select id="municipioPadre" name="municipioPadre">
+                                            <option value="">Seleccione departamento primero...</option>
+                                        </select>
+                                        <div class="error-message" id="municipioPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 36: Ciudad y Lugar de trabajo del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ciudadPadre">Ciudad:</label>
+                                        <select id="ciudadPadre" name="ciudadPadre">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="ciudadPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lugarTrabajoPadre">Lugar de trabajo:</label>
+                                        <input type="text" id="lugarTrabajoPadre" name="lugarTrabajoPadre" maxlength="150">
+                                        <div class="error-message" id="lugarTrabajoPadreError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 37: Dirección y Teléfono empresa del padre -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="direccionTrabajoPadre">Dirección:</label>
+                                        <input type="text" id="direccionTrabajoPadre" name="direccionTrabajoPadre" maxlength="200">
+                                        <div class="error-message" id="direccionTrabajoPadreError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telefonoEmpresaPadre">Teléfono de la empresa:</label>
+                                        <input type="tel" id="telefonoEmpresaPadre" name="telefonoEmpresaPadre" maxlength="12" pattern="[0-9]*">
+                                        <div class="error-message" id="telefonoEmpresaPadreError"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Composición y Dinámica Familiar -->
+                            <div class="section-divider">
+                                <h2>Composición y Dinámica Familiar</h2>
+                            </div>
+
+                            <!-- 1. Especifique con quienes vive el estudiante en la actualidad -->
+                            <div class="subsection">
+                                <h3>1. Especifique con quienes vive el estudiante en la actualidad</h3>
+                                
+                                <!-- Composición familiar principal -->
+                                <div class="composition-group" id="compositionGroup1">
+                                    <!-- Fila 38: Con quien vive y Nombre completo -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="conQuienVive1">¿Con quién vive el estudiante en la actualidad?</label>
+                                            <select id="conQuienVive1" name="conQuienVive1">
+                                                <option value="">Seleccione...</option>
+                                                <!-- Opciones de parametrización -->
+                                            </select>
+                                            <div class="error-message" id="conQuienVive1Error"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nombrePersona1">Nombre completo de la persona:</label>
+                                            <input type="text" id="nombrePersona1" name="nombrePersona1" maxlength="150">
+                                            <div class="error-message" id="nombrePersona1Error"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fila 39: Relación y Género -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="relacionEstudiante1">Relación con el estudiante:</label>
+                                            <select id="relacionEstudiante1" name="relacionEstudiante1">
+                                                <option value="">Seleccione...</option>
+                                                <option value="madre">Madre</option>
+                                                <option value="padre">Padre</option>
+                                                <option value="abuelo">Abuelo/a</option>
+                                                <option value="hermano">Hermano/a</option>
+                                                <option value="tio">Tío/a</option>
+                                                <option value="primo">Primo/a</option>
+                                                <option value="otro">Otro</option>
+                                            </select>
+                                            <div class="error-message" id="relacionEstudiante1Error"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="generoPersona1">Género:</label>
+                                            <select id="generoPersona1" name="generoPersona1">
+                                                <option value="">Seleccione...</option>
+                                                <option value="masculino">Masculino</option>
+                                                <option value="femenino">Femenino</option>
+                                            </select>
+                                            <div class="error-message" id="generoPersona1Error"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fila 40: Edad y Ocupación -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="edadPersona1">Edad:</label>
+                                            <select id="edadPersona1" name="edadPersona1">
+                                                <option value="">Seleccione...</option>
+                                            </select>
+                                            <script>
+                                                // Generar opciones de edad de 1 a 120
+                                                (function() {
+                                                    const selectEdadPersona1 = document.getElementById('edadPersona1');
+                                                    for (let i = 1; i <= 120; i++) {
+                                                        const option = document.createElement('option');
+                                                        option.value = i;
+                                                        option.textContent = i + ' años';
+                                                        selectEdadPersona1.appendChild(option);
+                                                    }
+                                                })();
+                                            </script>
+                                            <div class="error-message" id="edadPersona1Error"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ocupacionPersona1">Ocupación:</label>
+                                            <select id="ocupacionPersona1" name="ocupacionPersona1">
+                                                <option value="">Seleccione...</option>
+                                                <option value="empleado">Empleado</option>
+                                                <option value="independiente">Trabajador Independiente</option>
+                                                <option value="desempleado">Desempleado</option>
+                                                <option value="estudiante">Estudiante</option>
+                                                <option value="pensionado">Pensionado</option>
+                                                <option value="hogar">Labores del hogar</option>
+                                                <option value="otro">Otro</option>
+                                            </select>
+                                            <div class="error-message" id="ocupacionPersona1Error"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contenedor para composiciones adicionales -->
+                                <div id="additionalCompositions"></div>
+
+                                <!-- Botón para agregar más información -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <button type="button" class="btn-secondary" id="addCompositionBtn" onclick="addCompositionInfo()">
+                                            <i class="fas fa-plus"></i>
+                                            Agregar más información para la composición familiar
+                                        </button>
+                                        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">
+                                            Máximo 2 personas adicionales
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Especifique si el estudiante cuenta con otras figuras de apoyo -->
+                            <div class="subsection">
+                                <h3>2. Especifique si el estudiante cuenta con otras figuras de apoyo que no vivan en la misma vivienda:</h3>
+                                
+                                <!-- Figura de apoyo principal -->
+                                <div class="support-group" id="supportGroup1">
+                                    <!-- Fila 41: Nombre completo y Relación -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="nombreApoyo1">Nombre completo de la persona:</label>
+                                            <input type="text" id="nombreApoyo1" name="nombreApoyo1" maxlength="150">
+                                            <div class="error-message" id="nombreApoyo1Error"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="relacionApoyo1">Relación con el estudiante:</label>
+                                            <select id="relacionApoyo1" name="relacionApoyo1">
+                                                <option value="">Seleccione...</option>
+                                                <option value="madre">Madre</option>
+                                                <option value="padre">Padre</option>
+                                                <option value="abuelo">Abuelo/a</option>
+                                                <option value="hermano">Hermano/a</option>
+                                                <option value="tio">Tío/a</option>
+                                                <option value="primo">Primo/a</option>
+                                                <option value="amigo">Amigo/a de la familia</option>
+                                                <option value="vecino">Vecino/a</option>
+                                                <option value="otro">Otro</option>
+                                            </select>
+                                            <div class="error-message" id="relacionApoyo1Error"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fila 42: Género y Edad -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="generoApoyo1">Género:</label>
+                                            <select id="generoApoyo1" name="generoApoyo1">
+                                                <option value="">Seleccione...</option>
+                                                <option value="masculino">Masculino</option>
+                                                <option value="femenino">Femenino</option>
+                                            </select>
+                                            <div class="error-message" id="generoApoyo1Error"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edadApoyo1">Edad:</label>
+                                            <select id="edadApoyo1" name="edadApoyo1">
+                                                <option value="">Seleccione...</option>
+                                            </select>
+                                            <script>
+                                                // Generar opciones de edad de 1 a 120
+                                                (function() {
+                                                    const selectEdadApoyo1 = document.getElementById('edadApoyo1');
+                                                    for (let i = 1; i <= 120; i++) {
+                                                        const option = document.createElement('option');
+                                                        option.value = i;
+                                                        option.textContent = i + ' años';
+                                                        selectEdadApoyo1.appendChild(option);
+                                                    }
+                                                })();
+                                            </script>
+                                            <div class="error-message" id="edadApoyo1Error"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fila 43: Ocupación -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="ocupacionApoyo1">Ocupación:</label>
+                                            <select id="ocupacionApoyo1" name="ocupacionApoyo1">
+                                                <option value="">Seleccione...</option>
+                                                <option value="empleado">Empleado</option>
+                                                <option value="independiente">Trabajador Independiente</option>
+                                                <option value="desempleado">Desempleado</option>
+                                                <option value="estudiante">Estudiante</option>
+                                                <option value="pensionado">Pensionado</option>
+                                                <option value="hogar">Labores del hogar</option>
+                                                <option value="otro">Otro</option>
+                                            </select>
+                                            <div class="error-message" id="ocupacionApoyo1Error"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contenedor para apoyos adicionales -->
+                                <div id="additionalSupports"></div>
+
+                                <!-- Botón para agregar más información -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <button type="button" class="btn-secondary" id="addSupportBtn" onclick="addSupportInfo()">
+                                            <i class="fas fa-plus"></i>
+                                            Agregar más información para la composición familiar
+                                        </button>
+                                        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">
+                                            Máximo 2 personas adicionales
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Información de los padres -->
+                            <div class="subsection">
+                                <!-- Fila 44: Los padres viven juntos -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>¿Los padres viven juntos?</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="padresVivenJuntos" value="si">
+                                                <span class="radio-custom"></span>
+                                                Sí
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="padresVivenJuntos" value="no">
+                                                <span class="radio-custom"></span>
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="padresVivenJuntosError"></div>
+                                    </div>
+                                    <div class="form-group" id="tipoUnionGroup" style="display: none;">
+                                        <label for="tipoUnion">Especifique el tipo de unión:</label>
+                                        <select id="tipoUnion" name="tipoUnion">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="tipoUnionError"></div>
+                                    </div>
+                                    <div class="form-group" id="tiempoSeparacionGroup" style="display: none;">
+                                        <label for="tiempoSeparacion">¿Hace cuánto se separaron?</label>
+                                        <select id="tiempoSeparacion" name="tiempoSeparacion">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="tiempoSeparacionError"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Especifique los ingresos de la familia -->
+                            <div class="subsection">
+                                <h3>3. Especifique los ingresos de la familia</h3>
+                                
+                                <!-- Fila 45: Promedio de ingresos y Actividades -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="promedioIngresos">Promedio de ingresos de las cabezas de familia o de quienes depende la manutención:</label>
+                                        <select id="promedioIngresos" name="promedioIngresos">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="promedioIngresosError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="actividadesIngresos">Actividades de las que provienen estos ingresos:</label>
+                                        <input type="text" id="actividadesIngresos" name="actividadesIngresos" maxlength="200">
+                                        <div class="error-message" id="actividadesIngresosError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 46: Otros ingresos y Actividades -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="otrosIngresos">Otros ingresos de la familia:</label>
+                                        <select id="otrosIngresos" name="otrosIngresos">
+                                            <option value="">Seleccione...</option>
+                                            <option value="subsidios">Subsidios del gobierno</option>
+                                            <option value="pensiones">Pensiones</option>
+                                            <option value="remesas">Remesas del exterior</option>
+                                            <option value="arriendos">Arriendos</option>
+                                            <option value="ventas">Ventas informales</option>
+                                            <option value="otro">Otro</option>
+                                            <option value="ninguno">Ninguno</option>
+                                        </select>
+                                        <div class="error-message" id="otrosIngresosError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="actividadesOtrosIngresos">Actividades de las que provienen estos ingresos:</label>
+                                        <input type="text" id="actividadesOtrosIngresos" name="actividadesOtrosIngresos" maxlength="200">
+                                        <div class="error-message" id="actividadesOtrosIngresosError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 47: Vivienda -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Vivienda:</label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="tipoVivienda" value="propia">
+                                                <span class="checkbox-custom"></span>
+                                                Propia
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="tipoVivienda" value="arrendada">
+                                                <span class="checkbox-custom"></span>
+                                                Arrendada
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="tipoVivienda" value="compartida">
+                                                <span class="checkbox-custom"></span>
+                                                Compartida con otra(s) familia(s)
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="tipoViviendaError"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Historia de Vida y Situación Actual del Estudiante y Su Familia -->
+                            <div class="section-divider">
+                                <h2>Historia de Vida y Situación Actual del Estudiante y Su Familia</h2>
+                            </div>
+
+                            <!-- A. Contexto inicial del niño en sus primeros meses -->
+                            <div class="subsection">
+                                <h3>A. Contexto inicial del niño en sus primeros meses</h3>
+                                
+                                <!-- Compañía -->
+                                <h4>Compañía</h4>
+                                
+                                <!-- Fila 48: Con quién vivía durante primeros meses -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="conQuienViviaPrimerosMeses">¿Con quién vivía durante sus primeros meses de vida?</label>
+                                        <select id="conQuienViviaPrimerosMeses" name="conQuienViviaPrimerosMeses">
+                                            <option value="">Seleccione...</option>
+                                            <option value="madre_padre">Madre y padre</option>
+                                            <option value="solo_madre">Solo madre</option>
+                                            <option value="solo_padre">Solo padre</option>
+                                            <option value="abuelos">Abuelos</option>
+                                            <option value="otros">Otros</option>
+                                        </select>
+                                        <div class="error-message" id="conQuienViviaPrimerosMesesError"></div>
+                                    </div>
+                                    <div class="form-group" id="otrosConQuienViviaGroup" style="display: none;">
+                                        <label for="otrosConQuienVivia">Especifique otros:</label>
+                                        <input type="text" id="otrosConQuienVivia" name="otrosConQuienVivia" maxlength="100">
+                                        <div class="error-message" id="otrosConQuienViviaError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 49: Dónde dormía principalmente -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="dondeDormia">¿Dónde dormía principalmente?</label>
+                                        <select id="dondeDormia" name="dondeDormia">
+                                            <option value="">Seleccione...</option>
+                                            <option value="propia_habitacion">En su propia habitación</option>
+                                            <option value="habitacion_padres">En la habitación de los padres</option>
+                                            <option value="compartiendo_cama">Compartiendo cama</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="dondeDormiaError"></div>
+                                    </div>
+                                    <div class="form-group" id="otroDondeDormiaGroup" style="display: none;">
+                                        <label for="otroDondeDormia">Especifique otro:</label>
+                                        <input type="text" id="otroDondeDormia" name="otroDondeDormia" maxlength="100">
+                                        <div class="error-message" id="otroDondeDormiaError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Regulación fisiológica -->
+                                <h4>Regulación fisiológica</h4>
+                                
+                                <!-- Fila 50: Cómo se calmaba cuando lloraba -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="comoSeCalmaba">¿Cómo se calmaba cuando lloraba?</label>
+                                        <select id="comoSeCalmaba" name="comoSeCalmaba">
+                                            <option value="">Seleccione...</option>
+                                            <option value="alzarlo">Alzarlo</option>
+                                            <option value="alimentarlo">Alimentarlo</option>
+                                            <option value="canciones_arrullo">Canciones/arrullo</option>
+                                            <option value="chupo_biberon">Chupo o biberón</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="comoSeCalmabaError"></div>
+                                    </div>
+                                    <div class="form-group" id="otroComoSeCalmabaGroup" style="display: none;">
+                                        <label for="otroComoSeCalmaba">Especifique otro:</label>
+                                        <input type="text" id="otroComoSeCalmaba" name="otroComoSeCalmaba" maxlength="100">
+                                        <div class="error-message" id="otroComoSeCalmabaError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 51: Cómo regulaba el sueño -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="comoRegulabaSueno">¿Cómo regulaba el sueño?</label>
+                                        <select id="comoRegulabaSueno" name="comoRegulabaSueno">
+                                            <option value="">Seleccione...</option>
+                                            <option value="dormia_corrido">Dormía de corrido</option>
+                                            <option value="despertares_frecuentes">Despertares frecuentes</option>
+                                            <option value="necesitaba_acompanamiento">Necesitaba acompañamiento para dormir</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="comoRegulabaSuenoError"></div>
+                                    </div>
+                                    <div class="form-group" id="otroComoRegulabaSuenoGroup" style="display: none;">
+                                        <label for="otroComoRegulabaSueno">Especifique otro:</label>
+                                        <input type="text" id="otroComoRegulabaSueno" name="otroComoRegulabaSueno" maxlength="100">
+                                        <div class="error-message" id="otroComoRegulabaSuenoError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 52: Alimentación en el primer año -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="alimentacionPrimerAno">¿Cómo fue la alimentación en el primer año?</label>
+                                        <select id="alimentacionPrimerAno" name="alimentacionPrimerAno">
+                                            <option value="">Seleccione...</option>
+                                            <option value="lactancia_exclusiva">Lactancia materna exclusiva</option>
+                                            <option value="lactancia_mixta">Lactancia mixta</option>
+                                            <option value="formula_lactea">Fórmula láctea</option>
+                                            <option value="otros_alimentos">Otros alimentos tempranos</option>
+                                        </select>
+                                        <div class="error-message" id="alimentacionPrimerAnoError"></div>
+                                    </div>
+                                    <div class="form-group" id="mesesLactanciaGroup" style="display: none;">
+                                        <label for="mesesLactancia">¿Cuántos meses?</label>
+                                        <select id="mesesLactancia" name="mesesLactancia">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <script>
+                                            // Generar opciones de meses de 0 a 24
+                                            (function() {
+                                                const selectMesesLactancia = document.getElementById('mesesLactancia');
+                                                for (let i = 0; i <= 24; i++) {
+                                                    const option = document.createElement('option');
+                                                    option.value = i;
+                                                    option.textContent = i + ' meses';
+                                                    selectMesesLactancia.appendChild(option);
+                                                }
+                                            })();
+                                        </script>
+                                        <div class="error-message" id="mesesLactanciaError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Desarrollo motor, lenguaje, social y sexual -->
+                                <h4>Desarrollo motor, lenguaje, social y sexual</h4>
+                                
+                                <!-- Fila 53: Dificultades en el desarrollo motor -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>¿Notó dificultades en el desarrollo motor?</label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="dificultadesMotor" value="si">
+                                                <span class="checkbox-custom"></span>
+                                                Sí
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="dificultadesMotor" value="no">
+                                                <span class="checkbox-custom"></span>
+                                                No
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="dificultadesMotor" value="no_seguro">
+                                                <span class="checkbox-custom"></span>
+                                                No estoy seguro
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="dificultadesMotorError"></div>
+                                    </div>
+                                    <div class="form-group" id="etapaMotorGroup" style="display: none;">
+                                        <label for="etapaMotor">¿En qué etapa?</label>
+                                        <select id="etapaMotor" name="etapaMotor">
+                                            <option value="">Seleccione...</option>
+                                            <option value="arrastre">Arrastre</option>
+                                            <option value="gateo">Gateo</option>
+                                            <option value="caminar">Caminar</option>
+                                        </select>
+                                        <div class="error-message" id="etapaMotorError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 54: Dificultades en el lenguaje -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>¿Notó dificultades en el lenguaje?</label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="dificultadesLenguaje" value="si">
+                                                <span class="checkbox-custom"></span>
+                                                Sí
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="dificultadesLenguaje" value="no">
+                                                <span class="checkbox-custom"></span>
+                                                No
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="dificultadesLenguaje" value="no_seguro">
+                                                <span class="checkbox-custom"></span>
+                                                No estoy seguro
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="dificultadesLenguajeError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="complementoLenguaje">Comentarios adicionales:</label>
+                                        <input type="text" id="complementoLenguaje" name="complementoLenguaje" maxlength="200" placeholder="Opcional">
+                                        <div class="error-message" id="complementoLenguajeError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 55: Dificultades en el desarrollo social -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="desarrolloSocial">¿Hubo dificultades en el desarrollo social?</label>
+                                        <select id="desarrolloSocial" name="desarrolloSocial">
+                                            <option value="">Seleccione...</option>
+                                            <option value="interaccion_normal">Interacción normal</option>
+                                            <option value="poco_interes">Poco interés por otras personas</option>
+                                            <option value="aislamiento">Aislamiento</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="desarrolloSocialError"></div>
+                                    </div>
+                                    <div class="form-group" id="otroDesarrolloSocialGroup" style="display: none;">
+                                        <label for="otroDesarrolloSocial">Especifique otro:</label>
+                                        <input type="text" id="otroDesarrolloSocial" name="otroDesarrolloSocial" maxlength="100">
+                                        <div class="error-message" id="otroDesarrolloSocialError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 56: Conductas relacionadas con desarrollo sexual temprano -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>¿Se evidenciaron conductas relacionadas con el desarrollo sexual temprano?</label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="desarrolloSexual" value="si">
+                                                <span class="checkbox-custom"></span>
+                                                Sí
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="desarrolloSexual" value="no">
+                                                <span class="checkbox-custom"></span>
+                                                No
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="desarrolloSexual" value="no_seguro">
+                                                <span class="checkbox-custom"></span>
+                                                No estoy seguro
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="desarrolloSexualError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Salud y eventos médicos -->
+                                <h4>Salud y eventos médicos</h4>
+                                
+                                <!-- Fila 57: Enfermedad importante durante el primer año -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>¿Hubo alguna enfermedad importante durante el primer año?</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="enfermedadPrimerAno" value="si">
+                                                <span class="radio-custom"></span>
+                                                Sí
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="enfermedadPrimerAno" value="no">
+                                                <span class="radio-custom"></span>
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="enfermedadPrimerAnoError"></div>
+                                    </div>
+                                    <div class="form-group" id="cualEnfermedadGroup" style="display: none;">
+                                        <label for="cualEnfermedad">¿Cuál?</label>
+                                        <select id="cualEnfermedad" name="cualEnfermedad">
+                                            <option value="">Seleccione...</option>
+                                            <!-- Opciones de parametrización -->
+                                        </select>
+                                        <div class="error-message" id="cualEnfermedadError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 58: Tratamiento médico relevante -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="tratamientoMedico">¿Recibió tratamiento médico relevante?</label>
+                                        <select id="tratamientoMedico" name="tratamientoMedico">
+                                            <option value="">Seleccione...</option>
+                                            <option value="hospitalizacion">Hospitalización</option>
+                                            <option value="medicamentos">Medicamentos</option>
+                                            <option value="terapia_especializada">Terapia especializada</option>
+                                            <option value="cirugias">Cirugías</option>
+                                            <option value="otro">Otro</option>
+                                            <option value="ninguno">Ninguno</option>
+                                        </select>
+                                        <div class="error-message" id="tratamientoMedicoError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edadControlEsfinteres">¿A qué edad controló esfínteres?</label>
+                                        <select id="edadControlEsfinteres" name="edadControlEsfinteres">
+                                            <option value="">Seleccione...</option>
+                                            <option value="1-5">1 - 5 años</option>
+                                            <option value="5-10">5 - 10 años</option>
+                                            <option value="10-15">10 - 15 años</option>
+                                            <option value="15-20">15 - 20 años</option>
+                                        </select>
+                                        <div class="error-message" id="edadControlEsfinteresError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Actividades familiares -->
+                                <h4>Actividades familiares</h4>
+                                
+                                <!-- Fila 59: Actividades compartía con la familia -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="actividadesFamiliares">¿Qué actividades compartía con la familia en sus primeros años?</label>
+                                        <select id="actividadesFamiliares" name="actividadesFamiliares">
+                                            <option value="">Seleccione...</option>
+                                            <option value="juegos_casa">Juegos en casa</option>
+                                            <option value="paseos_aire_libre">Paseos al aire libre</option>
+                                            <option value="visitas_familiares">Visitas familiares</option>
+                                            <option value="actividades_religiosas">Actividades religiosas</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="actividadesFamiliaresError"></div>
+                                    </div>
+                                    <div class="form-group" id="otroActividadesFamiliaresGroup" style="display: none;">
+                                        <label for="otroActividadesFamiliares">Especifique otro:</label>
+                                        <input type="text" id="otroActividadesFamiliares" name="otroActividadesFamiliares" maxlength="100">
+                                        <div class="error-message" id="otroActividadesFamiliaresError"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- B. Primeros contactos con la educación formal -->
+                            <div class="subsection">
+                                <h3>B. Primeros contactos con la educación formal</h3>
+                                
+                                <!-- Fila 60: En qué nivel inició la escolaridad -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nivelInicioEscolaridad">¿En qué nivel inició la escolaridad?</label>
+                                        <select id="nivelInicioEscolaridad" name="nivelInicioEscolaridad">
+                                            <option value="">Seleccione...</option>
+                                            <option value="preescolar">Preescolar</option>
+                                            <option value="transicion">Transición</option>
+                                            <option value="primero_primaria">Primero de primaria</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="error-message" id="nivelInicioEscolaridadError"></div>
+                                    </div>
+                                    <div class="form-group" id="otroNivelInicioGroup" style="display: none;">
+                                        <label for="otroNivelInicio">Especifique otro:</label>
+                                        <input type="text" id="otroNivelInicio" name="otroNivelInicio" maxlength="50">
+                                        <div class="error-message" id="otroNivelInicioError"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 61: Qué edad tenía al iniciar la escolaridad -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edadInicioEscolaridad">¿Qué edad tenía al iniciar la escolaridad?</label>
+                                        <select id="edadInicioEscolaridad" name="edadInicioEscolaridad">
+                                            <option value="">Seleccione...</option>
+                                        </select>
+                                        <script>
+                                            // Generar opciones de edad de 0 a 100
+                                            (function() {
+                                                const selectEdadInicioEscolaridad = document.getElementById('edadInicioEscolaridad');
+                                                for (let i = 0; i <= 100; i++) {
+                                                    const option = document.createElement('option');
+                                                    option.value = i;
+                                                    option.textContent = i + ' años';
+                                                    selectEdadInicioEscolaridad.appendChild(option);
+                                                }
+                                            })();
+                                        </script>
+                                        <div class="error-message" id="edadInicioEscolaridadError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>¿Cómo fue la adaptación a la escuela?</label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="adaptacionEscuela" value="muy_facil">
+                                                <span class="checkbox-custom"></span>
+                                                Muy fácil
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="adaptacionEscuela" value="facil">
+                                                <span class="checkbox-custom"></span>
+                                                Fácil
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="adaptacionEscuela" value="dificil">
+                                                <span class="checkbox-custom"></span>
+                                                Difícil
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="adaptacionEscuela" value="muy_dificil">
+                                                <span class="checkbox-custom"></span>
+                                                Muy difícil
+                                            </label>
+                                        </div>
+                                        <div class="error-message" id="adaptacionEscuelaError"></div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Botones de acción -->
                             <div class="form-actions">
                                 <button type="button" class="btn-secondary" onclick="clearForm()">

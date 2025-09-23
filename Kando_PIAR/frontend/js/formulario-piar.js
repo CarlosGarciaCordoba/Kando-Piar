@@ -24,6 +24,7 @@ const FormularioPIAR = (function() {
     const consumeMedicamentosRadios = document.querySelectorAll('input[name="consumeMedicamentos"]');
     const perteneceGrupoEtnicoRadios = document.querySelectorAll('input[name="perteneceGrupoEtnico"]');
     const ingresoSistemaEducativoRadios = document.querySelectorAll('input[name="ingresoSistemaEducativo"]');
+    const jornadaRadios = document.querySelectorAll('input[name="jornada"]');
     const perteneceGrupoEtnicoMadreRadios = document.querySelectorAll('input[name="perteneceGrupoEtnicoMadre"]');
     const perteneceGrupoEtnicoPadreRadios = document.querySelectorAll('input[name="perteneceGrupoEtnicoPadre"]');
     
@@ -35,6 +36,11 @@ const FormularioPIAR = (function() {
     const grupoEtnicoGroup = document.getElementById('grupoEtnicoGroup');
     const historialEducativoDetails = document.getElementById('historialEducativoDetails');
     const historialEducativoDetails2 = document.getElementById('historialEducativoDetails2');
+    const historialEducativoDetails3 = document.getElementById('historialEducativoDetails3');
+    const gradoEscolarDetails = document.getElementById('gradoEscolarDetails');
+    const cicloEscolarDetails = document.getElementById('cicloEscolarDetails');
+    const gradoAspiranteEscolarDetails = document.getElementById('gradoAspiranteEscolarDetails');
+    const cicloAspiranteDetails = document.getElementById('cicloAspiranteDetails');
     const grupoEtnicoMadreGroup = document.getElementById('grupoEtnicoMadreGroup');
     const grupoEtnicoPadreGroup = document.getElementById('grupoEtnicoPadreGroup');
     
@@ -229,19 +235,72 @@ const FormularioPIAR = (function() {
         if (selectedValue === 'si') {
             historialEducativoDetails.style.display = 'flex';
             historialEducativoDetails2.style.display = 'flex';
-            document.getElementById('ultimoGradoCursado').required = true;
+            historialEducativoDetails3.style.display = 'flex';
             document.getElementById('establecimientoEducativo').required = true;
-            document.getElementById('gradoAspirante').required = true;
+            
+            // Llamar a la función de jornada para mostrar los campos correctos
+            _handleJornadaChange();
         } else {
             historialEducativoDetails.style.display = 'none';
             historialEducativoDetails2.style.display = 'none';
-            document.getElementById('ultimoGradoCursado').required = false;
+            historialEducativoDetails3.style.display = 'none';
+            gradoEscolarDetails.style.display = 'none';
+            cicloEscolarDetails.style.display = 'none';
+            gradoAspiranteEscolarDetails.style.display = 'none';
+            cicloAspiranteDetails.style.display = 'none';
+            
+            // Limpiar campos y remover requerimientos
             document.getElementById('establecimientoEducativo').required = false;
-            document.getElementById('gradoAspirante').required = false;
-            document.getElementById('ultimoGradoCursado').value = '';
+            document.getElementById('ultimoGradoEscolar').required = false;
+            document.getElementById('ultimoCicloEscolar').required = false;
+            document.getElementById('gradoEscolarAspirante').required = false;
+            document.getElementById('cicloEscolarAspirante').required = false;
+            
             document.getElementById('establecimientoEducativo').value = '';
             document.getElementById('motivoRetiro').value = '';
-            document.getElementById('gradoAspirante').value = '';
+            document.getElementById('ultimoGradoEscolar').value = '';
+            document.getElementById('ultimoCicloEscolar').value = '';
+            document.getElementById('gradoEscolarAspirante').value = '';
+            document.getElementById('cicloEscolarAspirante').value = '';
+            
+            // Limpiar selección de jornada
+            jornadaRadios.forEach(radio => radio.checked = false);
+        }
+    }
+
+    function _handleJornadaChange() {
+        const selectedValue = document.querySelector('input[name="jornada"]:checked')?.value;
+        
+        // Ocultar todos los campos condicionales inicialmente
+        gradoEscolarDetails.style.display = 'none';
+        cicloEscolarDetails.style.display = 'none';
+        gradoAspiranteEscolarDetails.style.display = 'none';
+        cicloAspiranteDetails.style.display = 'none';
+        
+        // Limpiar valores de campos
+        document.getElementById('ultimoGradoEscolar').value = '';
+        document.getElementById('ultimoCicloEscolar').value = '';
+        document.getElementById('gradoEscolarAspirante').value = '';
+        document.getElementById('cicloEscolarAspirante').value = '';
+        
+        // Remover requerimientos
+        document.getElementById('ultimoGradoEscolar').required = false;
+        document.getElementById('ultimoCicloEscolar').required = false;
+        document.getElementById('gradoEscolarAspirante').required = false;
+        document.getElementById('cicloEscolarAspirante').required = false;
+        
+        if (selectedValue === 'manana' || selectedValue === 'tarde') {
+            // Mostrar campos para grado escolar (Pre-Jardín a 11°)
+            gradoEscolarDetails.style.display = 'flex';
+            gradoAspiranteEscolarDetails.style.display = 'flex';
+            document.getElementById('ultimoGradoEscolar').required = true;
+            document.getElementById('gradoEscolarAspirante').required = true;
+        } else if (selectedValue === 'nocturna' || selectedValue === 'sabatino') {
+            // Mostrar campos para ciclo escolar (2° a 6°)
+            cicloEscolarDetails.style.display = 'flex';
+            cicloAspiranteDetails.style.display = 'flex';
+            document.getElementById('ultimoCicloEscolar').required = true;
+            document.getElementById('cicloEscolarAspirante').required = true;
         }
     }
 
@@ -964,6 +1023,11 @@ const FormularioPIAR = (function() {
             grupoEtnicoGroup.style.display = 'none';
             historialEducativoDetails.style.display = 'none';
             historialEducativoDetails2.style.display = 'none';
+            historialEducativoDetails3.style.display = 'none';
+            gradoEscolarDetails.style.display = 'none';
+            cicloEscolarDetails.style.display = 'none';
+            gradoAspiranteEscolarDetails.style.display = 'none';
+            cicloAspiranteDetails.style.display = 'none';
             grupoEtnicoMadreGroup.style.display = 'none';
             grupoEtnicoPadreGroup.style.display = 'none';
             
@@ -1045,6 +1109,10 @@ const FormularioPIAR = (function() {
         
         ingresoSistemaEducativoRadios.forEach(radio => {
             radio.addEventListener('change', _handleIngresoSistemaEducativoChange);
+        });
+        
+        jornadaRadios.forEach(radio => {
+            radio.addEventListener('change', _handleJornadaChange);
         });
         
         // Radio buttons condicionales de los padres

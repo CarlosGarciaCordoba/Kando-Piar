@@ -174,7 +174,15 @@
                                 </div>
                             </div>
 
-                            <!-- Fila 3: Tipo de Documento y Número -->
+                            <!-- Fila 3: Lugar de Nacimiento -->
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="lugarNacimiento">Lugar de Nacimiento:</label>
+                                    <input type="text" id="lugarNacimiento" name="lugarNacimiento" maxlength="40" placeholder="Ciudad y departamento/estado de nacimiento">
+                                </div>
+                            </div>
+
+                            <!-- Fila 4: Tipo de Documento y Número -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="tipoDocumento">Tipo de Documento: <span class="required">*</span></label>
@@ -190,7 +198,7 @@
                                 </div>
                             </div>
 
-                            <!-- Fila 4: Departamento y Municipio -->
+                            <!-- Fila 5: Departamento y Municipio -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="departamento">Departamento: <span class="required">*</span></label>
@@ -208,7 +216,7 @@
                                 </div>
                             </div>
 
-                            <!-- Fila 5: Barrio y Dirección -->
+                            <!-- Fila 6: Barrio y Dirección -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="barrio">Barrio: <span class="required">*</span></label>
@@ -224,7 +232,7 @@
                                 </div>
                             </div>
 
-                            <!-- Fila 6: Género y Teléfono -->
+                            <!-- Fila 7: Género y Teléfono -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="genero">Género: <span class="required">*</span></label>
@@ -240,7 +248,7 @@
                                 </div>
                             </div>
 
-                            <!-- Fila 7: Correo electrónico -->
+                            <!-- Fila 8: Correo electrónico -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="email">Correo electrónico:</label>
@@ -249,7 +257,7 @@
                                 </div>
                             </div>
 
-                            <!-- Fila 8: Afiliación al sistema de salud -->
+                            <!-- Fila 9: Afiliación al sistema de salud -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>¿Afiliado al sistema de salud? <span class="required">*</span></label>
@@ -430,12 +438,44 @@
                                 </div>
                             </div>
 
-                            <!-- Fila 16: Último grado escolar cursado (oculta inicialmente) -->
+                            <!-- Fila 16: Jornada (oculta inicialmente) -->
                             <div class="form-row" id="historialEducativoDetails" style="display: none;">
                                 <div class="form-group">
-                                    <label for="ultimoGradoCursado">Último grado escolar cursado: <span class="required">*</span></label>
-                                    <select id="ultimoGradoCursado" name="ultimoGradoCursado">
+                                    <label>Jornada: <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="jornada" value="manana" required>
+                                            <span class="radio-custom"></span>
+                                            Mañana
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="jornada" value="tarde" required>
+                                            <span class="radio-custom"></span>
+                                            Tarde
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="jornada" value="nocturna" required>
+                                            <span class="radio-custom"></span>
+                                            Nocturna
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="jornada" value="sabatino" required>
+                                            <span class="radio-custom"></span>
+                                            Sabatino
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="jornadaError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Campo condicional para Mañana/Tarde: Último grado escolar cursado -->
+                            <div class="form-row" id="gradoEscolarDetails" style="display: none;">
+                                <div class="form-group">
+                                    <label for="ultimoGradoEscolar">Último grado escolar cursado: <span class="required">*</span></label>
+                                    <select id="ultimoGradoEscolar" name="ultimoGradoEscolar">
                                         <option value="">Seleccione...</option>
+                                        <option value="pre-jardin">Pre-Jardín</option>
+                                        <option value="jardin">Jardín</option>
                                         <option value="0">0°</option>
                                         <option value="1">1°</option>
                                         <option value="2">2°</option>
@@ -449,8 +489,28 @@
                                         <option value="10">10°</option>
                                         <option value="11">11°</option>
                                     </select>
-                                    <div class="error-message" id="ultimoGradoCursadoError"></div>
+                                    <div class="error-message" id="ultimoGradoEscolarError"></div>
                                 </div>
+                            </div>
+
+                            <!-- Campo condicional para Nocturna/Sabatino: Último ciclo escolar cursado -->
+                            <div class="form-row" id="cicloEscolarDetails" style="display: none;">
+                                <div class="form-group">
+                                    <label for="ultimoCicloEscolar">Último ciclo escolar cursado: <span class="required">*</span></label>
+                                    <select id="ultimoCicloEscolar" name="ultimoCicloEscolar">
+                                        <option value="">Seleccione...</option>
+                                        <option value="2">2°</option>
+                                        <option value="3">3°</option>
+                                        <option value="4">4°</option>
+                                        <option value="5">5°</option>
+                                        <option value="6">6°</option>
+                                    </select>
+                                    <div class="error-message" id="ultimoCicloEscolarError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fila 17: Establecimiento educativo y Tipo de matrícula (oculta inicialmente) -->
+                            <div class="form-row" id="historialEducativoDetails2" style="display: none;">
                                 <div class="form-group">
                                     <label for="establecimientoEducativo">Establecimiento educativo donde lo cursó: <span class="required">*</span></label>
                                     <select id="establecimientoEducativo" name="establecimientoEducativo">
@@ -459,19 +519,34 @@
                                     </select>
                                     <div class="error-message" id="establecimientoEducativoError"></div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="tipoMatricula">Tipo de matrícula: <span class="required">*</span></label>
+                                    <select id="tipoMatricula" name="tipoMatricula">
+                                        <option value="">Seleccione...</option>
+                                        <option value="regular">Regular</option>
+                                        <option value="inclusion">Inclusión</option>
+                                    </select>
+                                    <div class="error-message" id="tipoMatriculaError"></div>
+                                </div>
                             </div>
 
-                            <!-- Fila 17: Motivo de retiro y grado aspirante (oculta inicialmente) -->
-                            <div class="form-row" id="historialEducativoDetails2" style="display: none;">
+                            <!-- Fila 18: Motivo de retiro (oculta inicialmente) -->
+                            <div class="form-row" id="historialEducativoDetails3" style="display: none;">
                                 <div class="form-group">
                                     <label for="motivoRetiro">Motivo por el cual se retiró del establecimiento educativo:</label>
                                     <input type="text" id="motivoRetiro" name="motivoRetiro" maxlength="255">
                                     <div class="error-message" id="motivoRetiroError"></div>
                                 </div>
+                            </div>
+
+                            <!-- Campo condicional para Mañana/Tarde: Grado escolar aspirante -->
+                            <div class="form-row" id="gradoAspiranteEscolarDetails" style="display: none;">
                                 <div class="form-group">
-                                    <label for="gradoAspirante">Grado escolar al que aspira ingresar: <span class="required">*</span></label>
-                                    <select id="gradoAspirante" name="gradoAspirante">
+                                    <label for="gradoEscolarAspirante">Grado escolar al que aspira ingresar: <span class="required">*</span></label>
+                                    <select id="gradoEscolarAspirante" name="gradoEscolarAspirante">
                                         <option value="">Seleccione...</option>
+                                        <option value="pre-jardin">Pre-Jardín</option>
+                                        <option value="jardin">Jardín</option>
                                         <option value="0">0°</option>
                                         <option value="1">1°</option>
                                         <option value="2">2°</option>
@@ -485,7 +560,23 @@
                                         <option value="10">10°</option>
                                         <option value="11">11°</option>
                                     </select>
-                                    <div class="error-message" id="gradoAspiranteError"></div>
+                                    <div class="error-message" id="gradoEscolarAspiranteError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Campo condicional para Nocturna/Sabatino: Ciclo escolar aspirante -->
+                            <div class="form-row" id="cicloAspiranteDetails" style="display: none;">
+                                <div class="form-group">
+                                    <label for="cicloEscolarAspirante">Ciclo escolar al que aspira ingresar: <span class="required">*</span></label>
+                                    <select id="cicloEscolarAspirante" name="cicloEscolarAspirante">
+                                        <option value="">Seleccione...</option>
+                                        <option value="2">2°</option>
+                                        <option value="3">3°</option>
+                                        <option value="4">4°</option>
+                                        <option value="5">5°</option>
+                                        <option value="6">6°</option>
+                                    </select>
+                                    <div class="error-message" id="cicloEscolarAspiranteError"></div>
                                 </div>
                             </div>
 

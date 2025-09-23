@@ -595,21 +595,87 @@ const FormularioPIAR = (function() {
     }
 
     function _handleDificultadesMotorChange() {
-        const checkboxes = document.querySelectorAll('input[name="dificultadesMotor"]');
+        const selectedValue = document.querySelector('input[name="dificultadesMotor"]:checked')?.value;
         const etapaGroup = document.getElementById('etapaMotorGroup');
-        let siSelected = false;
         
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked && checkbox.value === 'si') {
-                siSelected = true;
-            }
-        });
-        
-        if (siSelected) {
+        if (selectedValue === 'si') {
             etapaGroup.style.display = 'block';
         } else {
             etapaGroup.style.display = 'none';
             document.getElementById('etapaMotor').value = '';
+        }
+    }
+
+    // Funciones para nuevos campos del Anexo 1
+
+    function _handleCheckboxOtroChange(checkboxId, groupId) {
+        const checkbox = document.getElementById(checkboxId);
+        const group = document.getElementById(groupId);
+        
+        if (checkbox && group) {
+            if (checkbox.checked) {
+                group.style.display = 'block';
+            } else {
+                group.style.display = 'none';
+                const input = group.querySelector('input');
+                if (input) input.value = '';
+            }
+        }
+    }
+
+    function _handleDificultadesEscolaridadChange() {
+        const selectedValue = document.querySelector('input[name="dificultadesEscolaridad"]:checked')?.value;
+        const cualesGroup = document.getElementById('cualesDificultadesGroup');
+        
+        if (selectedValue === 'si') {
+            cualesGroup.style.display = 'block';
+        } else {
+            cualesGroup.style.display = 'none';
+            document.getElementById('cualesDificultades').value = '';
+            // También ocultar el grupo "otro" si estaba visible
+            const otroGroup = document.getElementById('otroCualesDificultadesGroup');
+            if (otroGroup) {
+                otroGroup.style.display = 'none';
+                const input = otroGroup.querySelector('input');
+                if (input) input.value = '';
+            }
+        }
+    }
+
+    function _handleInformoEstudianteChange() {
+        const selectedValue = document.querySelector('input[name="informoEstudiante"]:checked')?.value;
+        const quienInformoGroup = document.getElementById('quienInformoEstudianteGroup');
+        const comoAsumioGroup = document.getElementById('comoAsumioEstudianteGroup');
+        
+        if (selectedValue === 'si') {
+            quienInformoGroup.style.display = 'block';
+            comoAsumioGroup.style.display = 'block';
+        } else {
+            quienInformoGroup.style.display = 'none';
+            comoAsumioGroup.style.display = 'none';
+            document.getElementById('quienInformoEstudiante').value = '';
+            // Limpiar radio buttons de cómo asumió
+            const radioButtons = document.querySelectorAll('input[name="comoAsumioEstudiante"]');
+            radioButtons.forEach(radio => radio.checked = false);
+        }
+    }
+
+    function _handleContinuanTerapiasChange() {
+        const selectedValue = document.querySelector('input[name="continuanTerapias"]:checked')?.value;
+        const porqueDetuvoGroup = document.getElementById('porqueDetuvoTerapiasGroup');
+        
+        if (selectedValue === 'no') {
+            porqueDetuvoGroup.style.display = 'block';
+        } else {
+            porqueDetuvoGroup.style.display = 'none';
+            document.getElementById('porqueDetuvoTerapias').value = '';
+            // También ocultar el grupo "otro" si estaba visible
+            const otroGroup = document.getElementById('otroPorqueDetuvoTerapiasGroup');
+            if (otroGroup) {
+                otroGroup.style.display = 'none';
+                const input = otroGroup.querySelector('input');
+                if (input) input.value = '';
+            }
         }
     }
     
@@ -1059,11 +1125,379 @@ const FormularioPIAR = (function() {
             alimentacionPrimerAno.addEventListener('change', _handleAlimentacionChange);
         }
         
-        // Event listeners para checkboxes de dificultades motor
-        const dificultadesMotorCheckboxes = document.querySelectorAll('input[name="dificultadesMotor"]');
-        dificultadesMotorCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', _handleDificultadesMotorChange);
+        // Event listeners para radio buttons de dificultades motor
+        const dificultadesMotorRadios = document.querySelectorAll('input[name="dificultadesMotor"]');
+        dificultadesMotorRadios.forEach(radio => {
+            radio.addEventListener('change', _handleDificultadesMotorChange);
         });
+
+        // Event listeners para nuevos campos del Anexo 1
+        
+        // Experiencias significativas - checkbox "Otro"
+        const experienciasSignificativasOtro = document.getElementById('experienciasSignificativasOtro');
+        if (experienciasSignificativasOtro) {
+            experienciasSignificativasOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('experienciasSignificativasOtro', 'otroExperienciasSignificativasGroup'));
+        }
+
+        // Aprendizajes y dificultades iniciales - selects con "Otro"
+        const aprendizajesFaciles = document.getElementById('aprendizajesFaciles');
+        if (aprendizajesFaciles) {
+            aprendizajesFaciles.addEventListener('change', () => 
+                _handleSelectWithOther('aprendizajesFaciles', 'otroAprendizajesFacilesGroup'));
+        }
+
+        const aspectosDificiles = document.getElementById('aspectosDificiles');
+        if (aspectosDificiles) {
+            aspectosDificiles.addEventListener('change', () => 
+                _handleSelectWithOther('aspectosDificiles', 'otroAspectosDificilesGroup'));
+        }
+
+        // Dificultades evidentes - radio buttons condicionales
+        const dificultadesEscolaridadRadios = document.querySelectorAll('input[name="dificultadesEscolaridad"]');
+        dificultadesEscolaridadRadios.forEach(radio => {
+            radio.addEventListener('change', _handleDificultadesEscolaridadChange);
+        });
+
+        const cualesDificultades = document.getElementById('cualesDificultades');
+        if (cualesDificultades) {
+            cualesDificultades.addEventListener('change', () => 
+                _handleSelectWithOther('cualesDificultades', 'otroCualesDificultadesGroup'));
+        }
+
+        // Fortalezas observadas - select con "Otro"
+        const fortalezasEvidenciadas = document.getElementById('fortalezasEvidenciadas');
+        if (fortalezasEvidenciadas) {
+            fortalezasEvidenciadas.addEventListener('change', () => 
+                _handleSelectWithOther('fortalezasEvidenciadas', 'otroFortalezasEvidenciadasGroup'));
+        }
+
+        // Impacto en aprendizajes integrales - select con "Otro"
+        const vinculacionDesarrollo = document.getElementById('vinculacionDesarrollo');
+        if (vinculacionDesarrollo) {
+            vinculacionDesarrollo.addEventListener('change', () => 
+                _handleSelectWithOther('vinculacionDesarrollo', 'otroVinculacionDesarrolloGroup'));
+        }
+
+        // C. Familia actual - selects con "Otro"
+        const conQuienViveActualmente = document.getElementById('conQuienViveActualmente');
+        if (conQuienViveActualmente) {
+            conQuienViveActualmente.addEventListener('change', () => 
+                _handleSelectWithOther('conQuienViveActualmente', 'otroConQuienViveActualmenteGroup'));
+        }
+
+        const tipoFamiliaNuclear = document.getElementById('tipoFamiliaNuclear');
+        if (tipoFamiliaNuclear) {
+            tipoFamiliaNuclear.addEventListener('change', () => 
+                _handleSelectWithOther('tipoFamiliaNuclear', 'otroTipoFamiliaNuclearGroup'));
+        }
+
+        const aspectosDestacadosRelaciones = document.getElementById('aspectosDestacadosRelaciones');
+        if (aspectosDestacadosRelaciones) {
+            aspectosDestacadosRelaciones.addEventListener('change', () => 
+                _handleSelectWithOther('aspectosDestacadosRelaciones', 'otroAspectosDestacadosRelacionesGroup'));
+        }
+
+        const tratoFamiliaEstudiante = document.getElementById('tratoFamiliaEstudiante');
+        if (tratoFamiliaEstudiante) {
+            tratoFamiliaEstudiante.addEventListener('change', () => 
+                _handleSelectWithOther('tratoFamiliaEstudiante', 'otroTratoFamiliaEstudianteGroup'));
+        }
+
+        const manejoConflictosFamilia = document.getElementById('manejoConflictosFamilia');
+        if (manejoConflictosFamilia) {
+            manejoConflictosFamilia.addEventListener('change', () => 
+                _handleSelectWithOther('manejoConflictosFamilia', 'otroManejoConflictosFamiliaGroup'));
+        }
+
+        const reaccionEstudianteConflicto = document.getElementById('reaccionEstudianteConflicto');
+        if (reaccionEstudianteConflicto) {
+            reaccionEstudianteConflicto.addEventListener('change', () => 
+                _handleSelectWithOther('reaccionEstudianteConflicto', 'otroReaccionEstudianteConflictoGroup'));
+        }
+
+        const factoresUnionFamiliar = document.getElementById('factoresUnionFamiliar');
+        if (factoresUnionFamiliar) {
+            factoresUnionFamiliar.addEventListener('change', () => 
+                _handleSelectWithOther('factoresUnionFamiliar', 'otroFactoresUnionFamiliarGroup'));
+        }
+
+        // D. Diagnóstico de discapacidad - selects con "Otro"
+        const origenSospechas = document.getElementById('origenSospechas');
+        if (origenSospechas) {
+            origenSospechas.addEventListener('change', () => 
+                _handleSelectWithOther('origenSospechas', 'otroOrigenSospechasGroup'));
+        }
+
+        const quienEmitioDiagnostico = document.getElementById('quienEmitioDiagnostico');
+        if (quienEmitioDiagnostico) {
+            quienEmitioDiagnostico.addEventListener('change', () => 
+                _handleSelectWithOther('quienEmitioDiagnostico', 'otroQuienEmitioDiagnosticoGroup'));
+        }
+
+        // Información al estudiante - radio buttons condicionales
+        const informoEstudianteRadios = document.querySelectorAll('input[name="informoEstudiante"]');
+        informoEstudianteRadios.forEach(radio => {
+            radio.addEventListener('change', _handleInformoEstudianteChange);
+        });
+
+        // Terapias, tratamientos y apoyos - selects con "Otro"
+        const terapiasTratamientos = document.getElementById('terapiasTratamientos');
+        if (terapiasTratamientos) {
+            terapiasTratamientos.addEventListener('change', () => 
+                _handleSelectWithOther('terapiasTratamientos', 'otroTerapiasTratamientosGroup'));
+        }
+
+        // Continúan terapias - radio buttons condicionales
+        const continuanTerapiasRadios = document.querySelectorAll('input[name="continuanTerapias"]');
+        continuanTerapiasRadios.forEach(radio => {
+            radio.addEventListener('change', _handleContinuanTerapiasChange);
+        });
+
+        const porqueDetuvoTerapias = document.getElementById('porqueDetuvoTerapias');
+        if (porqueDetuvoTerapias) {
+            porqueDetuvoTerapias.addEventListener('change', () => 
+                _handleSelectWithOther('porqueDetuvoTerapias', 'otroPorqueDetuvoTerapiasGroup'));
+        }
+
+        // E. Vida actual del estudiante - selects con "Otro"
+        const actividadesIndependiente = document.getElementById('actividadesIndependiente');
+        if (actividadesIndependiente) {
+            actividadesIndependiente.addEventListener('change', () => 
+                _handleSelectWithOther('actividadesIndependiente', 'otroActividadesIndependienteGroup'));
+        }
+
+        const actividadesRequiereApoyo = document.getElementById('actividadesRequiereApoyo');
+        if (actividadesRequiereApoyo) {
+            actividadesRequiereApoyo.addEventListener('change', () => 
+                _handleSelectWithOther('actividadesRequiereApoyo', 'otroActividadesRequiereApoyoGroup'));
+        }
+
+        const fortalezasObservadas = document.getElementById('fortalezasObservadas');
+        if (fortalezasObservadas) {
+            fortalezasObservadas.addEventListener('change', () => 
+                _handleSelectWithOther('fortalezasObservadas', 'otroFortalezasObservadasGroup'));
+        }
+
+        const debilidadesObservadas = document.getElementById('debilidadesObservadas');
+        if (debilidadesObservadas) {
+            debilidadesObservadas.addEventListener('change', () => 
+                _handleSelectWithOther('debilidadesObservadas', 'otroDebilidadesObservadasGroup'));
+        }
+
+        const caracterizaDesarrollo = document.getElementById('caracterizaDesarrollo');
+        if (caracterizaDesarrollo) {
+            caracterizaDesarrollo.addEventListener('change', () => 
+                _handleSelectWithOther('caracterizaDesarrollo', 'otroCaracterizaDesarrolloGroup'));
+        }
+
+        const habitosDestacados = document.getElementById('habitosDestacados');
+        if (habitosDestacados) {
+            habitosDestacados.addEventListener('change', () => 
+                _handleSelectWithOther('habitosDestacados', 'otroHabitosDestacadosGroup'));
+        }
+
+        const preferenciasVidaCotidiana = document.getElementById('preferenciasVidaCotidiana');
+        if (preferenciasVidaCotidiana) {
+            preferenciasVidaCotidiana.addEventListener('change', () => 
+                _handleSelectWithOther('preferenciasVidaCotidiana', 'otroPreferenciasVidaCotidianaGroup'));
+        }
+
+        const interesesPersonales = document.getElementById('interesesPersonales');
+        if (interesesPersonales) {
+            interesesPersonales.addEventListener('change', () => 
+                _handleSelectWithOther('interesesPersonales', 'otroInteresesPersonalesGroup'));
+        }
+
+        const destacaPrincipalmente = document.getElementById('destacaPrincipalmente');
+        if (destacaPrincipalmente) {
+            destacaPrincipalmente.addEventListener('change', () => 
+                _handleSelectWithOther('destacaPrincipalmente', 'otroDestacaPrincipalmenteGroup'));
+        }
+
+        const limitacionesImportantes = document.getElementById('limitacionesImportantes');
+        if (limitacionesImportantes) {
+            limitacionesImportantes.addEventListener('change', () => 
+                _handleSelectWithOther('limitacionesImportantes', 'otroLimitacionesImportantesGroup'));
+        }
+
+        // F. Situaciones y reacciones en la vida cotidiana - selects con "Otro"
+        const situacionesAfectan = document.getElementById('situacionesAfectan');
+        if (situacionesAfectan) {
+            situacionesAfectan.addEventListener('change', () => 
+                _handleSelectWithOther('situacionesAfectan', 'otroSituacionesAfectanGroup'));
+        }
+
+        const reaccionEstudiante = document.getElementById('reaccionEstudiante');
+        if (reaccionEstudiante) {
+            reaccionEstudiante.addEventListener('change', () => 
+                _handleSelectWithOther('reaccionEstudiante', 'otroReaccionEstudianteGroup'));
+        }
+
+        const accionesAdultos = document.getElementById('accionesAdultos');
+        if (accionesAdultos) {
+            accionesAdultos.addEventListener('change', () => 
+                _handleSelectWithOther('accionesAdultos', 'otroAccionesAdultosGroup'));
+        }
+
+        // G. Experiencias en establecimientos educativos - selects con "Otro"
+        const fortalezasInstituciones = document.getElementById('fortalezasInstituciones');
+        if (fortalezasInstituciones) {
+            fortalezasInstituciones.addEventListener('change', () => 
+                _handleSelectWithOther('fortalezasInstituciones', 'otroFortalezasInstitucionesGroup'));
+        }
+
+        const dificultadesInstituciones = document.getElementById('dificultadesInstituciones');
+        if (dificultadesInstituciones) {
+            dificultadesInstituciones.addEventListener('change', () => 
+                _handleSelectWithOther('dificultadesInstituciones', 'otroDificultadesInstitucionesGroup'));
+        }
+
+        const impactoDificultades = document.getElementById('impactoDificultades');
+        if (impactoDificultades) {
+            impactoDificultades.addEventListener('change', () => 
+                _handleSelectWithOther('impactoDificultades', 'otroImpactoDificultadesGroup'));
+        }
+
+        // H. Fortalezas a potenciar y apoyos requeridos - checkboxes "Otro"
+        const fortalezasPotenciarOtro = document.getElementById('fortalezasPotenciarOtro');
+        if (fortalezasPotenciarOtro) {
+            fortalezasPotenciarOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('fortalezasPotenciarOtro', 'otroFortalezasPotenciarGroup'));
+        }
+
+        const tipoApoyosRequeridosOtro = document.getElementById('tipoApoyosRequeridosOtro');
+        if (tipoApoyosRequeridosOtro) {
+            tipoApoyosRequeridosOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('tipoApoyosRequeridosOtro', 'otroTipoApoyosRequeridosGroup'));
+        }
+
+        const quienDeberiaOfrecer = document.getElementById('quienDeberiaOfrecer');
+        if (quienDeberiaOfrecer) {
+            quienDeberiaOfrecer.addEventListener('change', () => 
+                _handleSelectWithOther('quienDeberiaOfrecer', 'otroQuienDeberiaOfrecerGroup'));
+        }
+
+        // I. Apoyos brindados en casa - checkboxes y selects con "Otro"
+        const apoyosEnCasaOtro = document.getElementById('apoyosEnCasaOtro');
+        if (apoyosEnCasaOtro) {
+            apoyosEnCasaOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('apoyosEnCasaOtro', 'otroApoyosEnCasaGroup'));
+        }
+
+        const quienBrindaApoyos = document.getElementById('quienBrindaApoyos');
+        if (quienBrindaApoyos) {
+            quienBrindaApoyos.addEventListener('change', () => 
+                _handleSelectWithOther('quienBrindaApoyos', 'otroQuienBrindaApoyosGroup'));
+        }
+
+        const recomendacionesEscuela = document.getElementById('recomendacionesEscuela');
+        if (recomendacionesEscuela) {
+            recomendacionesEscuela.addEventListener('change', () => 
+                _handleSelectWithOther('recomendacionesEscuela', 'otroRecomendacionesEscuelaGroup'));
+        }
+
+        // J. Eventos familiares y su impacto - checkboxes "Otro"
+        const eventosFamiliaresOtro = document.getElementById('eventosFamiliaresOtro');
+        if (eventosFamiliaresOtro) {
+            eventosFamiliaresOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('eventosFamiliaresOtro', 'otroEventosFamiliaresGroup'));
+        }
+
+        const impactoEventosEstudianteOtro = document.getElementById('impactoEventosEstudianteOtro');
+        if (impactoEventosEstudianteOtro) {
+            impactoEventosEstudianteOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('impactoEventosEstudianteOtro', 'otroImpactoEventosEstudianteGroup'));
+        }
+
+        // K. Proyectos familiares - checkboxes "Otro" 
+        const proyectosFamiliaresOtro = document.getElementById('proyectosFamiliaresOtro');
+        if (proyectosFamiliaresOtro) {
+            proyectosFamiliaresOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('proyectosFamiliaresOtro', 'otroProyectosFamiliaresGroup'));
+        }
+
+        // L. Redes de apoyo - checkboxes "Otro"
+        const quienesApoyanFamiliaOtro = document.getElementById('quienesApoyanFamiliaOtro');
+        if (quienesApoyanFamiliaOtro) {
+            quienesApoyanFamiliaOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('quienesApoyanFamiliaOtro', 'otroQuienesApoyanFamiliaGroup'));
+        }
+
+        const tipoApoyoBrindanOtro = document.getElementById('tipoApoyoBrindanOtro');
+        if (tipoApoyoBrindanOtro) {
+            tipoApoyoBrindanOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('tipoApoyoBrindanOtro', 'otroTipoApoyoBrindanGroup'));
+        }
+
+        // M. Historia de vida - selects y checkboxes "Otro"
+        const eventosImportantesVida = document.getElementById('eventosImportantesVida');
+        if (eventosImportantesVida) {
+            eventosImportantesVida.addEventListener('change', () => 
+                _handleSelectWithOther('eventosImportantesVida', 'otroEventosImportantesVidaGroup'));
+        }
+
+        const reaccionDificultades = document.getElementById('reaccionDificultades');
+        if (reaccionDificultades) {
+            reaccionDificultades.addEventListener('change', () => 
+                _handleSelectWithOther('reaccionDificultades', 'otroReaccionDificultadesGroup'));
+        }
+
+        const situacionesDificilesFamilia = document.getElementById('situacionesDificilesFamilia');
+        if (situacionesDificilesFamilia) {
+            situacionesDificilesFamilia.addEventListener('change', () => 
+                _handleSelectWithOther('situacionesDificilesFamilia', 'otroSituacionesDificilesFamiliaGroup'));
+        }
+
+        const queAprendisteOtro = document.getElementById('queAprendisteOtro');
+        if (queAprendisteOtro) {
+            queAprendisteOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('queAprendisteOtro', 'otroQueAprendisteGroup'));
+        }
+
+        // N. Percepción escolar - checkboxes y selects "Otro"
+        const apoyosRecibidosDificultadesOtro = document.getElementById('apoyosRecibidosDificultadesOtro');
+        if (apoyosRecibidosDificultadesOtro) {
+            apoyosRecibidosDificultadesOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('apoyosRecibidosDificultadesOtro', 'otroApoyosRecibidosDificultadesGroup'));
+        }
+
+        const apoyosGustariaRecibir = document.getElementById('apoyosGustariaRecibir');
+        if (apoyosGustariaRecibir) {
+            apoyosGustariaRecibir.addEventListener('change', () => 
+                _handleSelectWithOther('apoyosGustariaRecibir', 'otroApoyosGustariaRecibirGroup'));
+        }
+
+        const situacionesNoRepetirOtro = document.getElementById('situacionesNoRepetirOtro');
+        if (situacionesNoRepetirOtro) {
+            situacionesNoRepetirOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('situacionesNoRepetirOtro', 'otroSituacionesNoRepetirGroup'));
+        }
+
+        const expectativasPersonalesOtro = document.getElementById('expectativasPersonalesOtro');
+        if (expectativasPersonalesOtro) {
+            expectativasPersonalesOtro.addEventListener('change', () => 
+                _handleCheckboxOtroChange('expectativasPersonalesOtro', 'otroExpectativasPersonalesGroup'));
+        }
+        
+        // Configurar validación de checkboxes requeridos
+        setupCheckboxRequired('fortalezasPotenciar', 'fortalezasPotenciarError');
+        setupCheckboxRequired('tipoApoyosRequeridos', 'tipoApoyosRequeridosError');
+        setupCheckboxRequired('apoyosEnCasa', 'apoyosEnCasaError');
+        setupCheckboxRequired('eventosFamiliares', 'eventosFamiliaresError');
+        setupCheckboxRequired('impactoEventosEstudiante', 'impactoEventosEstudianteError');
+        setupCheckboxRequired('proyectosFamiliares', 'proyectosFamiliaresError');
+        setupCheckboxRequired('quienesApoyanFamilia', 'quienesApoyanFamiliaError');
+        setupCheckboxRequired('tipoApoyoBrindan', 'tipoApoyoBrindanError');
+        setupCheckboxRequired('habitosFortalecidos', 'habitosFortalecidosError');
+        setupCheckboxRequired('gustosPreferencias', 'gustosPreferenciasError');
+        setupCheckboxRequired('queAprendiste', 'queAprendisteError');
+        setupCheckboxRequired('areasSeTeFilitan', 'areasSeTeFilltanError');
+        setupCheckboxRequired('actitudAprendizajesFaciles', 'actitudAprendizajesFacilesError');
+        setupCheckboxRequired('areasSeTeCanseñan', 'areasSeTeCanseñanError');
+        setupCheckboxRequired('apoyosRecibidosDificultades', 'apoyosRecibidosDificultadesError');
+        setupCheckboxRequired('situacionesNoRepetir', 'situacionesNoRepetirError');
+        setupCheckboxRequired('expectativasPersonales', 'expectativasPersonalesError');
         
         // Funciones globales para botones dinámicos
         window.addCompositionInfo = addCompositionInfo;
@@ -1085,6 +1519,21 @@ const FormularioPIAR = (function() {
                 window.location.href = './login.html';
             }
         };
+    }
+    
+    // Función auxiliar para configurar validación de checkboxes requeridos
+    function setupCheckboxRequired(checkboxGroupName, errorId) {
+        const checkboxes = document.querySelectorAll(`input[name="${checkboxGroupName}"]`);
+        const errorElement = document.getElementById(errorId);
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+                if (anyChecked && errorElement) {
+                    errorElement.classList.remove('show');
+                }
+            });
+        });
     }
     
     // Método público para inicializar

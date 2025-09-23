@@ -269,6 +269,43 @@
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Títulos con letras (A, B, C, etc.) - Color azul */
+.subsection h3.section-letter {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    border-bottom: none;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(79, 134, 247, 0.2);
+}
+
+.section h3.section-letter {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    border-bottom: none;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(79, 134, 247, 0.2);
+}
+
+/* Títulos H3 sin letras - Solo negrilla */
+.subsection h3:not(.section-letter) {
+    font-weight: 700;
+}
+
+.section h3:not(.section-letter) {
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 25px 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
 .subsection h4 {
     color: var(--primary-color);
     font-size: 18px;

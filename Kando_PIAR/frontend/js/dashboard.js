@@ -79,6 +79,94 @@ const DashboardModule = (function() {
     function _initEventListeners() {
         // Manejar redimensionamiento de ventana
         window.addEventListener('resize', _handleWindowResize);
+        
+        // Manejar botón de logout
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', _handleLogout);
+        }
+        
+        // Manejar botones del modal de logout
+        const confirmLogoutBtn = document.getElementById('confirmLogout');
+        if (confirmLogoutBtn) {
+            confirmLogoutBtn.addEventListener('click', _confirmLogout);
+        }
+        
+        const cancelLogoutBtn = document.getElementById('cancelLogout');
+        if (cancelLogoutBtn) {
+            cancelLogoutBtn.addEventListener('click', _cancelLogout);
+        }
+        
+        // Cerrar modal al hacer clic fuera de él
+        const logoutModal = document.getElementById('logoutModal');
+        if (logoutModal) {
+            logoutModal.addEventListener('click', function(event) {
+                if (event.target === logoutModal) {
+                    _cancelLogout();
+                }
+            });
+        }
+    }
+    
+    function _handleLogout() {
+        // Mostrar modal de confirmación
+        const modal = document.getElementById('logoutModal');
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    }
+    
+    function _confirmLogout() {
+        // Limpiar datos del localStorage
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userData');
+        
+        // Redirigir al login
+        window.location.href = './login.html';
+    }
+    
+    function _cancelLogout() {
+        // Ocultar modal
+        const modal = document.getElementById('logoutModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    // Método público para cargar datos del usuario
+    function _loadUserData() {
+        const storedUserData = localStorage.getItem('userData');
+        let userData;
+        if (storedUserData) {
+            userData = JSON.parse(storedUserData);
+        } else {
+            userData = {
+                nombres: 'Usuario',
+                apellidos: '',
+                codigo_usuario: '',
+                email: '',
+                genero: ''
+            };
+        }
+        // Actualizar datos en el sidebar
+        const userName = document.querySelector('.user-name');
+        const userCode = document.getElementById('userCode');
+        const userEmail = document.getElementById('userEmail');
+        if (userName) userName.textContent = `${userData.nombres} ${userData.apellidos}`;
+        if (userCode) userCode.textContent = userData.codigo_usuario;
+        if (userEmail) userEmail.textContent = userData.email;
+
+        // Actualizar texto de bienvenida
+        const welcomeTitle = document.querySelector('.welcome-card h1');
+        if (welcomeTitle) {
+            let saludo = 'Bienvenido';
+            if (userData.genero) {
+                if (userData.genero.toLowerCase().startsWith('f')) {
+                    saludo = 'Bienvenida';
+                }
+            }
+            welcomeTitle.textContent = `${saludo}, ${userData.nombres}`;
+        }
     }
     
     // Método público para inicializar el módulo
@@ -91,6 +179,9 @@ const DashboardModule = (function() {
         
         // Inicializar otros event listeners
         _initEventListeners();
+
+        // Cargar datos del usuario
+        _loadUserData();
         
         console.log('Dashboard module initialized');
         console.log('Mobile mode:', isMobile);

@@ -1,14 +1,115 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { validationResult } from 'express-validator';
 import pool from '../../config/database';
+import { sendGmail } from '../../utils/gmailSender';
+import crypto from 'crypto';
+
+// Almacenamiento temporal en memoria (reemplazar por tabla password_resets)
+interface ResetTokenRecord {
+    email: string;
+    tokenHash: string;
+    expiresAt: Date;
+    used: boolean;
+}
+const resetTokens: ResetTokenRecord[] = [];
+
+// Controlador para recuperación de contraseña
+export const recoverPassword = async (req: Request, res: Response) => {
+    try {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).json({ success: false, message: 'El correo es requerido' });
+        }
+        // Buscar usuario por email
+        const userResult = await pool.query(
+            'SELECT nombres, apellidos FROM usuarios WHERE email = $1',
+            [email]
+        );
+        const user = userResult.rows[0];
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+        }
+        // Generar token seguro (64 chars hex) y guardar hash + expiración
+        const rawToken = crypto.randomBytes(32).toString('hex');
+        const tokenHash = await bcrypt.hash(rawToken, 10);
+        const expiresMinutes = parseInt(process.env.RESET_TOKEN_EXP_MINUTES || '30', 10);
+        const expiresAt = new Date(Date.now() + expiresMinutes * 60 * 1000);
+
+        // Limpiar tokens anteriores del mismo email
+        for (let i = resetTokens.length - 1; i >= 0; i--) {
+            if (resetTokens[i].email === email) resetTokens.splice(i, 1);
+        }
+        resetTokens.push({ email, tokenHash, expiresAt, used: false });
+
+        const frontendBase = process.env.FRONTEND_BASE_URL || 'http://localhost:5173';
+        const resetLink = `${frontendBase}/reset-password?token=${rawToken}`;
+
+    // Asunto definitivo con acentos correcto (UTF-8)
+    const subject = 'Recuperacion Kando PIAR';
+        const html = `
+            <div style="font-family:Arial,sans-serif;line-height:1.5;color:#222;max-width:600px;margin:0 auto;">
+              <h2 style="color:#2b5797;">Recuperación de contraseña</h2>
+              <p>Hola ${user.nombres} ${user.apellidos},</p>
+              <p>Hemos recibido una solicitud para restablecer tu contraseña. Si no fuiste tú, puedes ignorar este mensaje.</p>
+              <p style="margin:24px 0;">
+                <a href="${resetLink}" style="background:#2b5797;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px;display:inline-block;">Restablecer contraseña</a>
+              </p>
+              <p>O copia y pega este enlace en tu navegador:</p>
+              <p style="word-break:break-all;font-size:13px;color:#555;">${resetLink}</p>
+              <p style="font-size:12px;color:#777;">Este enlace expira en ${expiresMinutes} minutos.</p>
+              <hr style="border:none;border-top:1px solid #ddd;margin:30px 0;" />
+              <p style="font-size:11px;color:#777;">Si no solicitaste el cambio, te recomendamos revisar la seguridad de tu cuenta.</p>
+            </div>
+        `;
+    console.log('[[RECOVER vFINAL]] Subject a enviar:', subject);
+    console.log('[RECOVER DEBUG] HTML preview:', html.substring(0, 120).replace(/\n/g,' '), '...');
+    await sendGmail(email, subject, html);
+    const DEBUG_ID = 'RP-' + new Date().getTime();
+    res.json({ success: true, message: 'Correo de recuperación enviado', debug: { subject, resetLink, expiresMinutes, debugId: DEBUG_ID } });
+    } catch (error: any) {
+        console.error('Error en recoverPassword:', error);
+        res.status(500).json({ success: false, message: 'Error enviando el correo de recuperación' });
+    }
+};
+
+// Endpoint de reseteo de contraseña usando token temporal (memoria). Debe migrarse a tabla.
+export const resetPassword = async (req: Request, res: Response) => {
+    try {
+        const { token, newPassword } = req.body;
+        if (!token || !newPassword) {
+            return res.status(400).json({ success: false, message: 'Token y nueva contraseña requeridos' });
+        }
+        // Buscar token válido
+        const record = resetTokens.find(r => !r.used && r.expiresAt > new Date());
+        if (!record) {
+            return res.status(400).json({ success: false, message: 'Token inválido o expirado' });
+        }
+        const match = await bcrypt.compare(token, record.tokenHash);
+        if (!match) {
+            return res.status(400).json({ success: false, message: 'Token inválido' });
+        }
+        // Obtener usuario por email
+        const userResult = await pool.query('SELECT cedula FROM usuarios WHERE email = $1', [record.email]);
+        const user = userResult.rows[0];
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+        }
+        const newHash = await bcrypt.hash(newPassword, 10);
+        await pool.query('UPDATE usuarios SET password_hash = $1, debe_cambiar_password = false WHERE cedula = $2', [newHash, user.cedula]);
+        record.used = true;
+        res.json({ success: true, message: 'Contraseña actualizada correctamente' });
+    } catch (error: any) {
+        console.error('Error en resetPassword:', error);
+        res.status(500).json({ success: false, message: 'Error interno al restablecer contraseña' });
+    }
+};
 
 export const login = async (req: Request, res: Response) => {
     try {
         const { userCode, password, institution } = req.body;
 
-        // Validar que se proporcionaron todos los campos requeridos
+        // Validación básica redundante (el validator ya cubre pero se deja por robustez)
         if (!userCode || !password || !institution) {
             return res.status(400).json({
                 success: false,

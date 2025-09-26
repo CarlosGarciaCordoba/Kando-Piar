@@ -10,11 +10,6 @@ const GestionParametricas = (function() {
     const sidebarOverlay = document.getElementById('sidebarOverlay');
     const content = document.getElementById('content');
     
-    // Campos de información del usuario
-    const userNameElement = document.getElementById('userName');
-    const userCodeElement = document.getElementById('userCode');
-    const userEmailElement = document.getElementById('userEmail');
-    
     // Elementos de pestañas
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -37,8 +32,7 @@ const GestionParametricas = (function() {
         // Configurar navegación por pestañas
         setupTabNavigation();
         
-        // Cargar datos del usuario al inicializar
-        loadUserData();
+        // Los datos del usuario son manejados por dashboard.js
         
         console.log('Gestión de Paramétricas inicializada correctamente');
     }
@@ -89,28 +83,8 @@ const GestionParametricas = (function() {
         }
     }
     
-    function loadUserData() {
-        // Simular carga de datos del usuario (reemplazar con llamada API real)
-        const mockUserData = {
-            nombre: 'Usuario Sistema',
-            codigo: 'USR001',
-            email: 'usuario@kando.edu.co'
-        };
-        
-        updateUserInfo(mockUserData);
-    }
-    
-    function updateUserInfo(userData) {
-        if (userNameElement) {
-            userNameElement.textContent = userData.nombre || 'Usuario';
-        }
-        if (userCodeElement) {
-            userCodeElement.textContent = userData.codigo || 'N/A';
-        }
-        if (userEmailElement) {
-            userEmailElement.textContent = userData.email || 'No disponible';
-        }
-    }
+    // Las funciones de carga de usuario han sido eliminadas
+    // Dashboard.js ahora maneja toda la información del usuario
     
     function showNotification(message, type = 'info') {
         // Función para mostrar notificaciones al usuario
@@ -180,17 +154,7 @@ const GestionParametricas = (function() {
     
 })();
 
-// Función global de logout (mantenida para compatibilidad)
-function logout() {
-    if (confirm('¿Está seguro que desea cerrar sesión?')) {
-        // Limpiar datos locales
-        localStorage.removeItem('userData');
-        sessionStorage.clear();
-        
-        // Redirigir al login
-        window.location.href = './login.html';
-    }
-}
+// La función logout ahora es manejada por dashboard.js con el modal personalizado
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {

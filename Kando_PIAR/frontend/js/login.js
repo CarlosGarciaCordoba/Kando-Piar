@@ -219,12 +219,44 @@ const LoginModule = (function() {
         }
     }
     
-    function _handleRecoverySubmit(e) {
+    async function _handleRecoverySubmit(e) {
         e.preventDefault();
         
         if (_validateForm('recovery')) {
-            _hideRecoveryModal();
-            _showSuccessModal('Se ha enviado el instructivo para recuperar tu contraseña al correo electrónico proporcionado.');
+            const submitButton = recoveryForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            // Cambiar el botón a estado de carga
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            
+            try {
+                const email = inputs.recoveryEmail.value.trim();
+                
+                const response = await fetch(`${API_BASE_URL}/auth/recover-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    _hideRecoveryModal();
+                    _showSuccessModal('Se ha enviado el instructivo para recuperar tu contraseña al correo electrónico proporcionado.');
+                } else {
+                    _showError('recoveryEmail', result.message || 'Error al enviar el correo de recuperación');
+                }
+                
+            } catch (error) {
+                _showError('recoveryEmail', 'Error de conexión. Intente nuevamente.');
+            } finally {
+                // Restaurar el botón
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+            }
         }
     }
     

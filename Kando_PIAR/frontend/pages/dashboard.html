@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Kando</title>
+    <link rel="icon" type="image/svg+xml" href="../css/images/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../css/images/ico_barra.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
@@ -50,17 +52,17 @@
                 <i class="fas fa-user"></i>
             </div>
             <div class="user-details">
-                <div class="user-name">María González</div>
-                <p><i class="fas fa-code"></i> USR-7892</p>
-                <p><i class="fas fa-envelope"></i> maria.gonzalez@example.com</p>
+                <div class="user-name" id="userName">Cargando...</div>
+                <p><i class="fas fa-code"></i> <span id="userCode">Cargando...</span></p>
+                <p><i class="fas fa-envelope"></i> <span id="userEmail">Cargando...</span></p>
             </div>
-            <button class="logout-btn">
+            <button class="logout-btn" id="logoutBtn">
                 <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
             </button>
         </div>
         
         <nav class="sidebar-menu">
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item active">
                 <i class="fas fa-home"></i>
                 <span class="menu-text">Inicio</span>
             </a>
@@ -68,7 +70,7 @@
                 <i class="fas fa-chart-bar"></i>
                 <span class="menu-text">Estadísticas</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="formulario-piar.html" class="menu-item">
                 <i class="fas fa-book"></i>
                 <span class="menu-text">Formulario Piar</span>
             </a>
@@ -80,7 +82,7 @@
                 <i class="fas fa-file-alt"></i>
                 <span class="menu-text">Reportes</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="parametricas.html" class="menu-item">
                 <i class="fas fa-cog"></i>
                 <span class="menu-text">Parametrizaciones</span>
             </a>
@@ -89,15 +91,51 @@
 
     <!-- Contenido Principal -->
     <main class="content" id="content">
-        <div class="welcome-card">
-            <h1>Bienvenida, María</h1>
-            <p>Te damos la bienvenida al portal académico de Kando. Aquí podrás gestionar tus cursos, estudiantes y actividades académicas. Revisa las estadísticas recientes y las notificaciones importantes.</p>
+        <!-- Título Principal -->
+        <div class="form-header">
+            <h1>Panel de Control</h1>
+            <p>Te damos la bienvenida al portal académico de Kando. Aquí podrás gestionar tus cursos, estudiantes y actividades académicas.</p>
         </div>
-        <div class="welcome-card">
-            <h2>Actividades Recientes</h2>
-            <p>No hay actividades recientes para mostrar. Cuando tengas nuevas actividades, aparecerán aquí para que puedas revisarlas rápidamente.</p>
+
+        <!-- Secciones del Dashboard -->
+        <div class="dashboard-sections">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Resumen de Actividades</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Nueva Actividad
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-sync"></i> Actualizar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="welcome-card">
+                    <h3>Actividades Recientes</h3>
+                    <p>No hay actividades recientes para mostrar. Cuando tengas nuevas actividades, aparecerán aquí para que puedas revisarlas rápidamente.</p>
+                </div>
+                
+                <div class="welcome-card">
+                    <h3>Estadísticas del Sistema</h3>
+                    <p>Aquí podrás ver las métricas y estadísticas importantes del sistema PIAR.</p>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Modal de confirmación de logout -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirmar cerrar sesión</h3>
+            <p>¿Estás seguro de que quieres cerrar sesión?</p>
+            <div class="modal-buttons">
+                <button id="confirmLogout" class="btn-confirm">Sí, cerrar sesión</button>
+                <button id="cancelLogout" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="../js/dashboard.js"></script>
 </body>

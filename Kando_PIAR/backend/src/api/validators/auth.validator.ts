@@ -27,3 +27,18 @@ export const loginValidator = [
         .matches(/^[A-Z0-9]+$/)
         .withMessage('El código de institución solo puede contener letras mayúsculas y números')
 ];
+
+export const recoverPasswordValidator = [
+    body('email')
+        .notEmpty().withMessage('El correo es requerido')
+        .isEmail().withMessage('Correo inválido')
+];
+
+export const resetPasswordValidator = [
+    body('token')
+        .notEmpty().withMessage('Token requerido')
+        .isLength({ min: 32 }).withMessage('Token inválido'),
+    body('newPassword')
+        .notEmpty().withMessage('Nueva contraseña requerida')
+        .isLength({ min: 8 }).withMessage('Debe tener mínimo 8 caracteres')
+];

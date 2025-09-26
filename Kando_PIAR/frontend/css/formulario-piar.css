@@ -1,6 +1,14 @@
 /* Estilos específicos para el formulario PIAR */
 /* Extiende los estilos del dashboard manteniendo la consistencia visual */
 
+/* Variables adicionales para consistencia (por si no están heredadas) */
+:root {
+    --hover-color: rgba(79, 134, 247, 0.08);
+    --primary-light: rgba(79, 134, 247, 0.15);
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --text-muted: #a0aec0;
+}
+
 /* Sidebar/Menú lateral - Manteniendo estilos exactos del dashboard */
 .sidebar {
     width: var(--sidebar-width);
@@ -82,25 +90,33 @@
 }
 
 .menu-item {
-    padding: 15px 25px;
     display: flex;
     align-items: center;
+    padding: 18px 25px;
     color: var(--text-primary);
     text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
     transition: all 0.3s ease;
-    border-left: 4px solid transparent;
+    position: relative;
 }
 
 .menu-item:hover {
-    background-color: rgba(79, 134, 247, 0.1);
-    border-left-color: var(--primary-color);
+    background: rgba(79, 134, 247, 0.08);
+    color: var(--primary-color);
+    padding-left: 30px;
+}
+
+.menu-item.active {
+    background: rgba(79, 134, 247, 0.15);
+    color: var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    font-weight: 600;
 }
 
 .menu-item i {
     margin-right: 15px;
-    font-size: 18px;
-    width: 24px;
-    text-align: center;
+    width: 20px;
+    font-size: 16px;
     color: var(--primary-color);
 }
 
@@ -199,6 +215,7 @@
     justify-content: space-between;
     font-size: 20px;
     font-weight: 600;
+    color: white !important;
 }
 
 .section-header h2 i:first-child {
@@ -214,7 +231,7 @@
 }
 
 .section-content {
-    padding: 30px;
+    padding: 20px;
     display: block;
 }
 
@@ -245,7 +262,7 @@
 
 /* Divisores de sección */
 .section-divider {
-    margin: 40px 0 30px 0;
+    margin: 5px 0 15px 0;
     padding-bottom: 15px;
     border-bottom: 2px solid var(--border-color);
 }
@@ -630,4 +647,291 @@
         width: 85%; /* El menú ocupa el 85% del ancho en móviles */
         max-width: 300px; /* Pero no más de 300px */
     }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.modal-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-confirm {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(79, 134, 247, 0.3);
+}
+
+.btn-cancel {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 2px solid var(--text-secondary);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: var(--text-secondary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Estilos específicos para Anexo 2 */
+.intro-paragraph {
+    background: rgba(79, 134, 247, 0.08);
+    border-left: 4px solid var(--primary-color);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.intro-paragraph p {
+    margin: 0 0 15px 0;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.intro-paragraph p:last-child {
+    margin-bottom: 0;
+}
+
+.cognitive-section {
+    margin-top: 25px;
+    padding: 20px;
+    background: var(--card-background);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.cognitive-section h3 {
+    color: var(--primary-color);
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(79, 134, 247, 0.2);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.evaluation-container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Estilos para la tabla de evaluación */
+.evaluation-table-container {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.evaluation-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.evaluation-table th,
+.evaluation-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.evaluation-table th {
+    background: var(--accent-gradient);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.factor-column {
+    width: 15%;
+    font-weight: 600;
+}
+
+.aspects-column {
+    width: 65%;
+}
+
+.rating-column {
+    width: 20%;
+    text-align: center;
+}
+
+.rating-header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rating-header span {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.factor-cell {
+    font-weight: 600;
+    color: var(--primary-color);
+    vertical-align: top;
+}
+
+.aspects-cell {
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.rating-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.rating-checkboxes {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rating-checkboxes input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.rating-checkboxes input[type="radio"]:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Estilos para el campo de observaciones cognitivas */
+#observacionesCognitivas {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+#observacionesCognitivas:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 134, 247, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+#observacionesCognitivas::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Label del campo de observaciones */
+label[for="observacionesCognitivas"] {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 15px;
+}
+
+/* Contenedor del campo de observaciones */
+.form-group.full-width {
+    position: relative;
+}
+
+.form-group.full-width::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+    border-radius: 12px 12px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-group.full-width:focus-within::before {
+    opacity: 1;
 }

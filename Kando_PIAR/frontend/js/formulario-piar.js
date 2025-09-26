@@ -1581,10 +1581,37 @@ const FormularioPIAR = (function() {
         
         // Logout
         window.logout = function() {
-            if (confirm('¿Está seguro de que desea cerrar sesión?')) {
-                localStorage.removeItem('authToken');
-                localStorage.removeItem('userData');
-                window.location.href = './login.html';
+            // Mostrar modal de confirmación
+            const modal = document.getElementById('logoutModal');
+            if (modal) {
+                modal.style.display = 'block';
+                
+                // Configurar eventos del modal si no están configurados
+                const confirmBtn = document.getElementById('confirmLogout');
+                const cancelBtn = document.getElementById('cancelLogout');
+                
+                if (confirmBtn && !confirmBtn.hasAttribute('data-configured')) {
+                    confirmBtn.addEventListener('click', function() {
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('userData');
+                        window.location.href = './login.html';
+                    });
+                    confirmBtn.setAttribute('data-configured', 'true');
+                }
+                
+                if (cancelBtn && !cancelBtn.hasAttribute('data-configured')) {
+                    cancelBtn.addEventListener('click', function() {
+                        modal.style.display = 'none';
+                    });
+                    cancelBtn.setAttribute('data-configured', 'true');
+                }
+                
+                // Cerrar modal al hacer clic fuera
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
             }
         };
     }
@@ -1622,3 +1649,66 @@ const FormularioPIAR = (function() {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', FormularioPIAR.init);
+
+// Funciones globales para Anexo 2
+function limpiarAnexo2() {
+    const anexo2Form = document.getElementById('anexo2Form');
+    if (anexo2Form) {
+        anexo2Form.reset();
+        console.log('Formulario Anexo 2 limpiado');
+    }
+}
+
+function guardarAnexo2() {
+    const anexo2Form = document.getElementById('anexo2Form');
+    if (anexo2Form) {
+        const formData = new FormData(anexo2Form);
+        const data = {};
+        
+        for (let [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        
+        console.log('Datos del Anexo 2 a guardar:', data);
+        
+        // Aquí se puede implementar la lógica para enviar los datos al servidor
+        // Por ahora solo mostramos un mensaje de confirmación
+        alert('Anexo 2 guardado exitosamente');
+    }
+}
+
+// Función global para logout (usada en formulario-piar.html)
+function logout() {
+    // Mostrar modal de confirmación
+    const modal = document.getElementById('logoutModal');
+    if (modal) {
+        modal.style.display = 'block';
+        
+        // Configurar eventos del modal si no están configurados
+        const confirmBtn = document.getElementById('confirmLogout');
+        const cancelBtn = document.getElementById('cancelLogout');
+        
+        if (confirmBtn && !confirmBtn.hasAttribute('data-configured-global')) {
+            confirmBtn.addEventListener('click', function() {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('userData');
+                window.location.href = './login.html';
+            });
+            confirmBtn.setAttribute('data-configured-global', 'true');
+        }
+        
+        if (cancelBtn && !cancelBtn.hasAttribute('data-configured-global')) {
+            cancelBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            cancelBtn.setAttribute('data-configured-global', 'true');
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+}

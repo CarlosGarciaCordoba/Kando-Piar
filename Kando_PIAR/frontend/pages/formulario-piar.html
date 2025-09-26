@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario PIAR - Kando</title>
+    <link rel="icon" type="image/svg+xml" href="../css/images/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../css/images/ico_barra.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/formulario-piar.css">
@@ -67,7 +69,7 @@
             </a>
             <a href="#" class="menu-item">
                 <i class="fas fa-chart-bar"></i>
-                <span class="menu-text">Dashboard</span>
+                <span class="menu-text">Estadísticas</span>
             </a>
             <a href="#" class="menu-item">
                 <i class="fas fa-users"></i>
@@ -85,9 +87,9 @@
                 <i class="fas fa-file-alt"></i>
                 <span class="menu-text">Reportes</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="parametricas.html" class="menu-item">
                 <i class="fas fa-cog"></i>
-                <span class="menu-text">Configuración</span>
+                <span class="menu-text">Parametrizaciones</span>
             </a>
         </nav>
     </aside>
@@ -4383,8 +4385,466 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Anexo 2 -->
+            <div class="form-section">
+                <div class="section-header" data-section="anexo2">
+                    <h2>
+                        <i class="fas fa-file-alt"></i>
+                        Anexo 2
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </h2>
+                </div>
+                
+                <div class="section-content" id="anexo2Content">
+                    <!-- Título Principal del Anexo 2 -->
+                    <div class="section-divider">
+                        <h2>Valoración y Seguimiento Pedagógica</h2>
+                    </div>
+
+                    <!-- Párrafo introductorio -->
+                    <div class="intro-paragraph">
+                        <p>A continuación, encontrará 4 dimensiones con diferentes aspectos a observar en el estudiante, por favor marque escoja la calificación según considere que corresponde, para cada factor. Sólo se debe dar una respuesta, siendo 1 la ausencia del factor a evaluar y 4 su máximo desarrollo posible.</p>
+                        <p>Posterior a cada dimensión encontrará un cuadro donde podrá describir las fortalezas y debilidades correspondientes al análisis de los factores.</p>
+                    </div>
+
+                    <!-- Dimensión Cognitiva -->
+                    <div class="subsection">
+                        <h3 class="section-letter">Dimensión Cognitiva</h3>
+                        
+                        <!-- Funciones Cognitivas Básicas Para Aprender -->
+                        <div class="cognitive-section">
+                            <h3>Funciones Cognitivas Básicas Para Aprender</h3>
+                            
+                            <!-- Formulario de evaluación cognitiva -->
+                            <form id="anexo2Form" class="student-form">
+                                <!-- Tabla de evaluación -->
+                                <div class="evaluation-table-container">
+                                    <table class="evaluation-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="factor-column">Factores</th>
+                                                <th class="aspects-column">Aspectos a Observar</th>
+                                                <th class="rating-column">
+                                                    <div class="rating-header">
+                                                        <span>1</span>
+                                                        <span>2</span>
+                                                        <span>3</span>
+                                                        <span>4</span>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="factor-cell">Percepción</td>
+                                                <td class="aspects-cell">Puede discriminar: forma, color, tamaño, figura, fondo, e información auditiva y visual.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="percepcion_1" name="percepcion" value="1">
+                                                        <input type="radio" id="percepcion_2" name="percepcion" value="2">
+                                                        <input type="radio" id="percepcion_3" name="percepcion" value="3">
+                                                        <input type="radio" id="percepcion_4" name="percepcion" value="4">
+                
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Atención -->
+                                            <tr>
+                                                <td class="factor-cell" rowspan="10">Atención</td>
+                                                <td class="aspects-cell">El estudiante reporta sentirse descansado y haber dormido bien.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_descanso_1" name="atencion_descanso" value="1">
+                                                        <input type="radio" id="atencion_descanso_2" name="atencion_descanso" value="2">
+                                                        <input type="radio" id="atencion_descanso_3" name="atencion_descanso" value="3">
+                                                        <input type="radio" id="atencion_descanso_4" name="atencion_descanso" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">
+                                                    <strong>Atención selectiva</strong><br>
+                                                    El estudiante:<br>
+                                                    1. Se centra de forma específica en aquellos elementos del ambiente que son relevantes para la tarea que debe desarrollar.
+                                                </td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_selectiva_1_1" name="atencion_selectiva_1" value="1">
+                                                        <input type="radio" id="atencion_selectiva_1_2" name="atencion_selectiva_1" value="2">
+                                                        <input type="radio" id="atencion_selectiva_1_3" name="atencion_selectiva_1" value="3">
+                                                        <input type="radio" id="atencion_selectiva_1_4" name="atencion_selectiva_1" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">2. Consigue ignorar aquella información del contexto que no le es útil para lograr el desarrollo de la actividad propuesta.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_selectiva_2_1" name="atencion_selectiva_2" value="1">
+                                                        <input type="radio" id="atencion_selectiva_2_2" name="atencion_selectiva_2" value="2">
+                                                        <input type="radio" id="atencion_selectiva_2_3" name="atencion_selectiva_2" value="3">
+                                                        <input type="radio" id="atencion_selectiva_2_4" name="atencion_selectiva_2" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">3. Cuando se distrae, logra reorientar la atención a la meta que debe cumplir y retoma la tarea con facilidad.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_selectiva_3_1" name="atencion_selectiva_3" value="1">
+                                                        <input type="radio" id="atencion_selectiva_3_2" name="atencion_selectiva_3" value="2">
+                                                        <input type="radio" id="atencion_selectiva_3_3" name="atencion_selectiva_3" value="3">
+                                                        <input type="radio" id="atencion_selectiva_3_4" name="atencion_selectiva_3" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">
+                                                    <strong>Atención sostenida</strong><br>
+                                                    El estudiante:<br>
+                                                    1. Logra mantenerse concentrado en clase, por lapsos de 40 a 45 minutos.
+                                                </td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_sostenida_1_1" name="atencion_sostenida_1" value="1">
+                                                        <input type="radio" id="atencion_sostenida_1_2" name="atencion_sostenida_1" value="2">
+                                                        <input type="radio" id="atencion_sostenida_1_3" name="atencion_sostenida_1" value="3">
+                                                        <input type="radio" id="atencion_sostenida_1_4" name="atencion_sostenida_1" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">2. No se distrae fácilmente, a pesar de que en el ambiente haya estímulos que pueden dispersarlo.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_sostenida_2_1" name="atencion_sostenida_2" value="1">
+                                                        <input type="radio" id="atencion_sostenida_2_2" name="atencion_sostenida_2" value="2">
+                                                        <input type="radio" id="atencion_sostenida_2_3" name="atencion_sostenida_2" value="3">
+                                                        <input type="radio" id="atencion_sostenida_2_4" name="atencion_sostenida_2" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">3. Si la tarea o la actividad lo demandan, cambia de foco de atención y deja el anterior con facilidad.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_sostenida_3_1" name="atencion_sostenida_3" value="1">
+                                                        <input type="radio" id="atencion_sostenida_3_2" name="atencion_sostenida_3" value="2">
+                                                        <input type="radio" id="atencion_sostenida_3_3" name="atencion_sostenida_3" value="3">
+                                                        <input type="radio" id="atencion_sostenida_3_4" name="atencion_sostenida_3" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">
+                                                    <strong>Atención dividida</strong><br>
+                                                    El estudiante:<br>
+                                                    1. Es capaz de mantenerse atento a varias fuentes de estímulos sin perder el hilo de la clase o de la actividad.
+                                                </td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_dividida_1_1" name="atencion_dividida_1" value="1">
+                                                        <input type="radio" id="atencion_dividida_1_2" name="atencion_dividida_1" value="2">
+                                                        <input type="radio" id="atencion_dividida_1_3" name="atencion_dividida_1" value="3">
+                                                        <input type="radio" id="atencion_dividida_1_4" name="atencion_dividida_1" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">2. Puede tomar apuntes o notas de la clase de buena calidad, sin desviarse del tema que se está tratando.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_dividida_2_1" name="atencion_dividida_2" value="1">
+                                                        <input type="radio" id="atencion_dividida_2_2" name="atencion_dividida_2" value="2">
+                                                        <input type="radio" id="atencion_dividida_2_3" name="atencion_dividida_2" value="3">
+                                                        <input type="radio" id="atencion_dividida_2_4" name="atencion_dividida_2" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">3. Sigue apropiadamente instrucciones con varios comandos.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="atencion_dividida_3_1" name="atencion_dividida_3" value="1">
+                                                        <input type="radio" id="atencion_dividida_3_2" name="atencion_dividida_3" value="2">
+                                                        <input type="radio" id="atencion_dividida_3_3" name="atencion_dividida_3" value="3">
+                                                        <input type="radio" id="atencion_dividida_3_4" name="atencion_dividida_3" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Concentración -->
+                                            <tr>
+                                                <td class="factor-cell">Concentración</td>
+                                                <td class="aspects-cell">Prioriza y establece orden de actividades asignadas, es constante en el trabajo.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="concentracion_1" name="concentracion" value="1">
+                                                        <input type="radio" id="concentracion_2" name="concentracion" value="2">
+                                                        <input type="radio" id="concentracion_3" name="concentracion" value="3">
+                                                        <input type="radio" id="concentracion_4" name="concentracion" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Memoria -->
+                                            <tr>
+                                                <td class="factor-cell" rowspan="8">Memoria</td>
+                                                <td class="aspects-cell">
+                                                    El estudiante:<br>
+                                                    Puede recordar la información a corto (actividad del día), mediano (hasta por una semana) y largo plazo (de forma permanente).
+                                                </td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_general_1" name="memoria_general" value="1">
+                                                        <input type="radio" id="memoria_general_2" name="memoria_general" value="2">
+                                                        <input type="radio" id="memoria_general_3" name="memoria_general" value="3">
+                                                        <input type="radio" id="memoria_general_4" name="memoria_general" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">1. Comenta experiencias de su vida cotidiana en diversos espacios.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_1_1" name="memoria_1" value="1">
+                                                        <input type="radio" id="memoria_1_2" name="memoria_1" value="2">
+                                                        <input type="radio" id="memoria_1_3" name="memoria_1" value="3">
+                                                        <input type="radio" id="memoria_1_4" name="memoria_1" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">2. Vincula emociones con experiencias significativas.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_2_1" name="memoria_2" value="1">
+                                                        <input type="radio" id="memoria_2_2" name="memoria_2" value="2">
+                                                        <input type="radio" id="memoria_2_3" name="memoria_2" value="3">
+                                                        <input type="radio" id="memoria_2_4" name="memoria_2" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">3. Habla de sí mismo y de su proyección personal, familiar y escolar.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_3_1" name="memoria_3" value="1">
+                                                        <input type="radio" id="memoria_3_2" name="memoria_3" value="2">
+                                                        <input type="radio" id="memoria_3_3" name="memoria_3" value="3">
+                                                        <input type="radio" id="memoria_3_4" name="memoria_3" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">4. Utiliza una red de conceptos y vocabulario enriquecida.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_4_1" name="memoria_4" value="1">
+                                                        <input type="radio" id="memoria_4_2" name="memoria_4" value="2">
+                                                        <input type="radio" id="memoria_4_3" name="memoria_4" value="3">
+                                                        <input type="radio" id="memoria_4_4" name="memoria_4" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">5. Evidencia conocimientos especializados sobre un tema particular.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_5_1" name="memoria_5" value="1">
+                                                        <input type="radio" id="memoria_5_2" name="memoria_5" value="2">
+                                                        <input type="radio" id="memoria_5_3" name="memoria_5" value="3">
+                                                        <input type="radio" id="memoria_5_4" name="memoria_5" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">6. Maneja un vocabulario poco frecuente en su edad y medio cultural.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_6_1" name="memoria_6" value="1">
+                                                        <input type="radio" id="memoria_6_2" name="memoria_6" value="2">
+                                                        <input type="radio" id="memoria_6_3" name="memoria_6" value="3">
+                                                        <input type="radio" id="memoria_6_4" name="memoria_6" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">7. Recuerda conocimientos aprendidos previamente sin dificultad.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="memoria_7_1" name="memoria_7" value="1">
+                                                        <input type="radio" id="memoria_7_2" name="memoria_7" value="2">
+                                                        <input type="radio" id="memoria_7_3" name="memoria_7" value="3">
+                                                        <input type="radio" id="memoria_7_4" name="memoria_7" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Motivación -->
+                                            <tr>
+                                                <td class="factor-cell">Motivación</td>
+                                                <td class="aspects-cell">Se mantiene motivado, le gusta que lo incentiven, responde a los estímulos de motivación.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="motivacion_1" name="motivacion" value="1">
+                                                        <input type="radio" id="motivacion_2" name="motivacion" value="2">
+                                                        <input type="radio" id="motivacion_3" name="motivacion" value="3">
+                                                        <input type="radio" id="motivacion_4" name="motivacion" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Adaptación -->
+                                            <tr>
+                                                <td class="factor-cell" rowspan="3">Adaptación</td>
+                                                <td class="aspects-cell">Con pares</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="adaptacion_pares_1" name="adaptacion_pares" value="1">
+                                                        <input type="radio" id="adaptacion_pares_2" name="adaptacion_pares" value="2">
+                                                        <input type="radio" id="adaptacion_pares_3" name="adaptacion_pares" value="3">
+                                                        <input type="radio" id="adaptacion_pares_4" name="adaptacion_pares" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">Con los adultos</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="adaptacion_adultos_1" name="adaptacion_adultos" value="1">
+                                                        <input type="radio" id="adaptacion_adultos_2" name="adaptacion_adultos" value="2">
+                                                        <input type="radio" id="adaptacion_adultos_3" name="adaptacion_adultos" value="3">
+                                                        <input type="radio" id="adaptacion_adultos_4" name="adaptacion_adultos" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">En los ambientes</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="adaptacion_ambientes_1" name="adaptacion_ambientes" value="1">
+                                                        <input type="radio" id="adaptacion_ambientes_2" name="adaptacion_ambientes" value="2">
+                                                        <input type="radio" id="adaptacion_ambientes_3" name="adaptacion_ambientes" value="3">
+                                                        <input type="radio" id="adaptacion_ambientes_4" name="adaptacion_ambientes" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Estilo de Aprendizaje -->
+                                            <tr>
+                                                <td class="factor-cell" rowspan="3">Estilo de Aprendizaje</td>
+                                                <td class="aspects-cell">Kinestésico (motor, movimiento, actividad lúdica)</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="estilo_kinestesico_1" name="estilo_kinestesico" value="1">
+                                                        <input type="radio" id="estilo_kinestesico_2" name="estilo_kinestesico" value="2">
+                                                        <input type="radio" id="estilo_kinestesico_3" name="estilo_kinestesico" value="3">
+                                                        <input type="radio" id="estilo_kinestesico_4" name="estilo_kinestesico" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">Visual (Observando, leyendo, viendo videos)</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="estilo_visual_1" name="estilo_visual" value="1">
+                                                        <input type="radio" id="estilo_visual_2" name="estilo_visual" value="2">
+                                                        <input type="radio" id="estilo_visual_3" name="estilo_visual" value="3">
+                                                        <input type="radio" id="estilo_visual_4" name="estilo_visual" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">Auditivo (escuchando, con música, con ayudas ambientales, instrucción verbal)</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="estilo_auditivo_1" name="estilo_auditivo" value="1">
+                                                        <input type="radio" id="estilo_auditivo_2" name="estilo_auditivo" value="2">
+                                                        <input type="radio" id="estilo_auditivo_3" name="estilo_auditivo" value="3">
+                                                        <input type="radio" id="estilo_auditivo_4" name="estilo_auditivo" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Procesamiento de la información -->
+                                            <tr>
+                                                <td class="factor-cell" rowspan="3">Procesamiento de la información</td>
+                                                <td class="aspects-cell">Entiende la instrucción sin aclaraciones adicionales o especificación de la tarea</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="procesamiento_1_1" name="procesamiento_1" value="1">
+                                                        <input type="radio" id="procesamiento_1_2" name="procesamiento_1" value="2">
+                                                        <input type="radio" id="procesamiento_1_3" name="procesamiento_1" value="3">
+                                                        <input type="radio" id="procesamiento_1_4" name="procesamiento_1" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">Interpreta y ejecuta paso a paso la actividad propuesta</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="procesamiento_2_1" name="procesamiento_2" value="1">
+                                                        <input type="radio" id="procesamiento_2_2" name="procesamiento_2" value="2">
+                                                        <input type="radio" id="procesamiento_2_3" name="procesamiento_2" value="3">
+                                                        <input type="radio" id="procesamiento_2_4" name="procesamiento_2" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="aspects-cell">Culmina con éxito la actividad.</td>
+                                                <td class="rating-cell">
+                                                    <div class="rating-checkboxes">
+                                                        <input type="radio" id="procesamiento_3_1" name="procesamiento_3" value="1">
+                                                        <input type="radio" id="procesamiento_3_2" name="procesamiento_3" value="2">
+                                                        <input type="radio" id="procesamiento_3_3" name="procesamiento_3" value="3">
+                                                        <input type="radio" id="procesamiento_3_4" name="procesamiento_3" value="4">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Campo de texto para observaciones basado en calificaciones -->
+                                <div class="form-row" style="margin-top: 30px;">
+                                    <div class="form-group full-width">
+                                        <label for="observacionesCognitivas">Observaciones sobre las Funciones Cognitivas Básicas:</label>
+                                        <textarea id="observacionesCognitivas" name="observacionesCognitivas" rows="6" 
+                                                placeholder="Este campo se llenará automáticamente según las calificaciones seleccionadas en la tabla anterior (funcionalidad en desarrollo)..."></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Botones de acción para Anexo 2 -->
+                                <div class="form-actions">
+                                    <button type="button" class="btn-secondary" onclick="limpiarAnexo2()">
+                                        <i class="fas fa-eraser"></i> Limpiar
+                                    </button>
+                                    <button type="button" class="btn-primary" onclick="guardarAnexo2()">
+                                        <i class="fas fa-save"></i> Guardar Anexo 2
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Modal de confirmación de logout -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirmar cerrar sesión</h3>
+            <p>¿Estás seguro de que quieres cerrar sesión?</p>
+            <div class="modal-buttons">
+                <button id="confirmLogout" class="btn-confirm">Sí, cerrar sesión</button>
+                <button id="cancelLogout" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="../js/dashboard.js"></script>
     <script src="../js/formulario-piar.js"></script>

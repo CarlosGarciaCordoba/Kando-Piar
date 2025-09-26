@@ -935,3 +935,165 @@ label[for="observacionesCognitivas"] {
 .form-group.full-width:focus-within::before {
     opacity: 1;
 }
+
+/* Estilos para el campo de observaciones de razonamiento - idénticos a cognitivas */
+#observacionesRazonamiento {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+#observacionesRazonamiento:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 134, 247, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+#observacionesRazonamiento::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Label del campo de observaciones de razonamiento */
+label[for="observacionesRazonamiento"] {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 15px;
+}
+
+/* Estilos para el campo de observaciones de competencias lectoras - idénticos a los anteriores */
+#observacionesCompetenciasLectoras {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+#observacionesCompetenciasLectoras:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 134, 247, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+#observacionesCompetenciasLectoras::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Label del campo de observaciones de competencias lectoras */
+label[for="observacionesCompetenciasLectoras"] {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 15px;
+}
+
+/* Estilos para el campo de observaciones de habilidades numéricas - idénticos a los anteriores */
+#observacionesHabilidadesNumericas {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+#observacionesHabilidadesNumericas:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 134, 247, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+#observacionesHabilidadesNumericas::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Label del campo de observaciones de habilidades numéricas */
+label[for="observacionesHabilidadesNumericas"] {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 15px;
+}
+
+/* Estilos para el campo de observaciones de funciones ejecutivas - idénticos a los anteriores */
+#observacionesFuncionesEjecutivas {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+#observacionesFuncionesEjecutivas:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 134, 247, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+#observacionesFuncionesEjecutivas::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Label del campo de observaciones de funciones ejecutivas */
+label[for="observacionesFuncionesEjecutivas"] {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 15px;
+}
+
+
